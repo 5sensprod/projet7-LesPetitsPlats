@@ -10773,8 +10773,8 @@ h1, .h1 {
   font-family: "DM Sans", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 36px;
-  line-height: 47px;
+  font-size: 2.25rem;
+  line-height: 2.9375rem;
   color: #D04F4F;
 }
 
@@ -10782,8 +10782,8 @@ h2, .h2 {
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
   color: #000000;
 }
 
@@ -10791,8 +10791,15 @@ body {
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #000000;
+}
+
+.header {
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
 }
 
 /*# sourceMappingURL=style.css.map */

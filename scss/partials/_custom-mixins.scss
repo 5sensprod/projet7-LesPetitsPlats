@@ -9,4 +9,21 @@
     font-size: $font-size;
     line-height: $line-height;
     color: $color;
-  }
+}
+
+// styles pour le texte de base
+@mixin base-text-style {
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: 400;
+    font-size: $body-font-size;
+    color: $body-color;
+}
+
+
+@mixin header {
+    flex-direction: column;
+    align-items: center;
+    margin-top: map-get($spacing, 'xl');
+    margin-bottom: map-get($spacing, 'md');
+}

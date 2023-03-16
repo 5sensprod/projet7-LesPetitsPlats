@@ -1,12 +1,25 @@
+@import 'custom-functions'; // Cette fonction convertit le pixel en rem
+
 // Variables de typographie
 $font-family-base: 'Lato', sans-serif;
 $h1-font-family: 'DM Sans', sans-serif;
 $h2-font-family: 'Lato', sans-serif;
-$h1-font-size: 36px;
-$h1-line-height: 47px;
+$h1-font-size: rem(36);
+$h1-line-height: rem(47);
 $h1-color: #D04F4F;
-$h2-font-size: 18px;
-$h2-line-height: 22px;
+$h2-font-size: rem(18);
+$h2-line-height: rem(22);
 $h2-color: #000000;
-$body-font-size: 12px;
+$body-font-size: rem(12);
 $body-color: #000000;
+
+
+// Variables d'espacement
+$spacing: (
+    'xs': rem(5),
+    'sm': rem(10),
+    'md': rem(20),
+    'lg': rem(30),
+    'xl': rem(40),
+    'xxl': rem(50)
+);

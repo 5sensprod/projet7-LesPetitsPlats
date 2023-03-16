@@ -3,17 +3,13 @@
 
 h1 {
     @include titre($h1-font-size, $h1-line-height, $h1-color, $h1-font-family, 700);
-  }
-  
-  h2 {
+}
+
+h2 {
     @include titre($h2-font-size, $h2-line-height, $h2-color, $h2-font-family, 400);
-  }
-  
-  // Styles pour le texte de base
-  body {
-    font-family: $font-family-base;
-    font-style: normal;
-    font-weight: 400;
-    font-size: $body-font-size;
-    color: $body-color;
-  }
+}
+
+// Styles pour le texte de base
+body {
+    @include base-text-style;
+}

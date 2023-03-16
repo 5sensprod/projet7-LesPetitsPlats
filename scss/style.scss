@@ -1,6 +1,12 @@
 // import de bootstrap
 @import '../node_modules/bootstrap/scss/bootstrap';
 
-// import des mixins personnalisées
-@import 'partials/custom-mixins';
+// import des fichiers personnalisées
+@import'partials/custom-mixins';
 @import 'partials/custom-typo';
+@import 'partials/custom-functions';
+
+// Utilisation du style pour le header
+.header {
+    @include header;
+}

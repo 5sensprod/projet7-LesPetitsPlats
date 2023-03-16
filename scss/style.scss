@@ -1,10 +1,16 @@
 // import de bootstrap
-@import '../node_modules/bootstrap/scss/bootstrap';
+// @import '../node_modules/bootstrap/scss/bootstrap';
+
+//import reset
+@import 'partials/reset';
 
 // import des fichiers personnalisées
 @import'partials/custom-mixins';
 @import 'partials/custom-typo';
 @import 'partials/custom-functions';
+
+// Import des formats de fichiers
+@import 'blocks/search-recipe.scss';
 
 // Utilisation du style pour le header
 .header {

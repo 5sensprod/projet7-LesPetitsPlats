@@ -1,0 +1,12 @@
+// Import des variables customisées
+@import 'custom-variables';
+
+// Styles pour les titres
+@mixin titre($font-size, $line-height, $color, $font-family, $font-weight) {
+    font-family: $font-family;
+    font-style: normal;
+    font-weight: $font-weight;
+    font-size: $font-size;
+    line-height: $line-height;
+    color: $color;
+  }

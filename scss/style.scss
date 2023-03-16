@@ -1,5 +1,6 @@
 // import de bootstrap
 @import '../node_modules/bootstrap/scss/bootstrap';
 
-// import des variables personnalisées
-@import 'partials/custom-variables';
+// import des mixins personnalisées
+@import 'partials/custom-mixins';
+@import 'partials/custom-typo';

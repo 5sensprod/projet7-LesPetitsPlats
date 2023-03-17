@@ -1,5 +1,5 @@
 import { createRecipeCard } from "../factories/recipesFactory.js";
-import { createListItem } from "../factories/dropdownFactory.js";
+import { addUniqueListItem } from "../utilities/utils.js";
 
 fetch('../../data/recipes.json')
   .then(response => response.json())
@@ -8,24 +8,21 @@ fetch('../../data/recipes.json')
     const ingredientsList = document.getElementById("sort-by-ingredients");
     data.forEach(recipe => {
       recipe.ingredients.forEach(ingredient => {
-        const option = createListItem(ingredient.ingredient);
-        ingredientsList.appendChild(option);
+        addUniqueListItem(ingredientsList, ingredient.ingredient);
       });
     });
 
     // Créer les éléments de la liste d'appareils
     const appliancesList = document.getElementById("sort-by-appliances");
     data.forEach(recipe => {
-      const option = createListItem(recipe.appliance);
-      appliancesList.appendChild(option);
+      addUniqueListItem(appliancesList, recipe.appliance);
     });
 
     // Créer les éléments de la liste d'ustensiles
     const utensilsList = document.getElementById("sort-by-utensils");
     data.forEach(recipe => {
       recipe.ustensils.forEach(utensil => {
-        const option = createListItem(utensil);
-        utensilsList.appendChild(option);
+        addUniqueListItem(utensilsList, utensil);
       });
     });
 

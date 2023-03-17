@@ -43,6 +43,76 @@ td, th {
   padding: 0;
 }
 
+.dropdown {
+  position: relative;
+}
+.dropdown .dropdown__toggle {
+  height: 69px;
+  width: 170px;
+  border-radius: 5px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+  text-align: left;
+  padding-left: 1.25rem;
+  border: none;
+}
+.dropdown .dropdown__toggle--ingredients {
+  background-color: #3282F7;
+}
+.dropdown .dropdown__toggle--appliances {
+  background-color: #68D9A4;
+}
+.dropdown .dropdown__toggle--utensils {
+  background-color: #ED6454;
+}
+.dropdown .dropdown__icon {
+  position: absolute;
+  color: white;
+  font-size: 1.0625rem;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dropdown {
+  position: relative;
+}
+.dropdown .dropdown__toggle {
+  height: 69px;
+  width: 170px;
+  border-radius: 5px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+  text-align: left;
+  padding-left: 1.25rem;
+  border: none;
+}
+.dropdown .dropdown__toggle--ingredients {
+  background-color: #3282F7;
+}
+.dropdown .dropdown__toggle--appliances {
+  background-color: #68D9A4;
+}
+.dropdown .dropdown__toggle--utensils {
+  background-color: #ED6454;
+}
+.dropdown .dropdown__icon {
+  position: absolute;
+  color: white;
+  font-size: 1.0625rem;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 h1 {
   font-family: "DM Sans", sans-serif;
   font-style: normal;
@@ -70,7 +140,6 @@ body {
 }
 
 .search-form--recipes {
-  padding: 0 2%;
   margin-bottom: 1.25rem;
 }
 .search-form--recipes .input-group {
@@ -98,8 +167,10 @@ body {
   outline: none;
   box-shadow: none;
 }
-.search-form--recipes .input-group .search-label {
+.search-form--recipes .input-group .search-icon {
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   right: 1.0625rem;
 }
 
@@ -109,6 +180,20 @@ body {
   align-items: center;
   margin-top: 2.5rem;
   margin-bottom: 1.25rem;
+}
+
+.bloc-page {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 77.5rem;
+  padding: 0 2%;
+}
+
+.dropdown-container {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 5rem;
 }
 
 /*# sourceMappingURL=style.css.map */

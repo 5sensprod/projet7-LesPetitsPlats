@@ -27,14 +27,57 @@
         <img class="header__logo" src="img/logo/logo.svg" alt="Logo Les Petits Plats" tabindex="0">
         <h1 class="header__title">Les petits plats</h1>
     </header>
-    <form class="search-form search-form--recipes" action="#" method="GET">
-        <div class="input-group">
-            <input id="search-input" type="text" class="form-control" name="q" placeholder="Rechercher une recette" required>
-            <label for="search-input" class="search-label">
-                <img src="img/icon-search.svg" alt="search icon" class="search-icon">
-            </label>
+    <!-- page wrapper -->
+    <div class="bloc-page">
+        <!--  Recherche par recette -->
+        <form class="search-form search-form--recipes" action="#" method="GET">
+            <div class="input-group">
+                <input id="search-input" type="text" class="form-control" name="q" placeholder="Rechercher une recette"
+                    required>
+                <label for="search-input" class="search-label">
+                    <img src="img/icon-search.svg" alt="search icon" class="search-icon">
+                </label>
+            </div>
+        </form>
+        <!--  Critères sélectionnés -->
+        <div class="search-criteria">
         </div>
-    </form>
+        <!--  Recherche par ingrédient, appareil, ustensile -->
+        <div class="dropdown-container">
+            <div class="dropdown">
+                <input type="button" class="dropdown__toggle dropdown__toggle--ingredients" value="Ingrédients">
+                <label for="sort-by-ingredients" class="dropdown__label">
+                    <i class="fas fa-chevron-down dropdown__icon"></i>
+                </label>
+                <ul id="sort-by-ingredients" class="dropdown__menu">
+                    <!-- Liste des ingrédients générée dynamiquement -->
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <input type="button" class="dropdown__toggle dropdown__toggle--appliances" value="Appareils">
+                <label for="sort-by-appliances" class="dropdown__label">
+                    <i class="fas fa-chevron-down dropdown__icon"></i>
+                </label>
+                <ul id="sort-by-appliances" class="dropdown__menu">
+                    <!-- Liste des appareils générée dynamiquement -->
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <input type="button" class="dropdown__toggle dropdown__toggle--utensils" value="Ustensiles">
+                <label for="sort-by-utensils" class="dropdown__label">
+                    <i class="fas fa-chevron-down dropdown__icon"></i>
+                </label>
+                <ul id="sort-by-utensils" class="dropdown__menu">
+                    <!-- Liste des ustensiles générée dynamiquement -->
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
 </body>
 
 </html>

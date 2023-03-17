@@ -16,3 +16,17 @@
 .header {
     @include header;
 }
+
+.bloc-page {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: rem(1240);
+    padding: 0 2%;
+}
+
+.dropdown-container {
+    display: flex;
+    gap: map-get($spacing, 'md');
+    margin-bottom: map-get($spacing, 'xxxl');
+}

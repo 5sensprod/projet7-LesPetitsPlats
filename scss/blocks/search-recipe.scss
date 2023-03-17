@@ -1,5 +1,4 @@
 .search-form--recipes {
-    padding: 0 2%;
     margin-bottom: map-get($spacing, 'md');
 
     .input-group {
@@ -30,8 +29,10 @@
             }
         }
 
-        .search-label {
+        .search-icon {
             position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
             right: rem(17);
         }
     }

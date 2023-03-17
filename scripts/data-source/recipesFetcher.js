@@ -1,7 +1,7 @@
 import { createRecipeCard } from "../factories/recipesFactory.js";
 import { addUniqueListItem } from "../utilities/utils.js";
 
-fetch('../../data/recipes.json')
+fetch('./data/recipes.json')
   .then(response => response.json())
   .then(data => {
     // Créer les éléments de la liste d'ingrédients

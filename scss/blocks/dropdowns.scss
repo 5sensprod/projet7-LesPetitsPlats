@@ -18,6 +18,10 @@
         &--utensils {
             background-color: #ED6454;
         }
+        &--active {
+            width: rem(667);
+            border-radius: rem(5) rem(5) 0 0;
+        }
     }
 
     &__label {
@@ -25,16 +29,19 @@
     }
 
     &__menu {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        width: rem(667);
-        gap: rem(10);
-        font-size: rem(18);
-        color: white;
-        padding: map-get($spacing, 'md');
-        ;
-        border-radius: rem(5);
 
+        display: none;
+
+        &--active {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: rem(667);
+            gap: rem(10);
+            font-size: rem(18);
+            color: white;
+            padding: map-get($spacing, 'md');
+            border-radius: 0 0 rem(5) rem(5);
+        }
         &--ingredients {
             background-color: #3282F7;
         }
@@ -46,6 +53,7 @@
         &--utensils {
             background-color: #ED6454;
         }
+
     }
 
     &__icon {

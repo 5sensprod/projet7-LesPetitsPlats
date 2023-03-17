@@ -43,6 +43,10 @@ td, th {
   padding: 0;
 }
 
+input[type=text]:focus {
+  outline: none;
+}
+
 h1 {
   font-family: "DM Sans", sans-serif;
   font-style: normal;
@@ -174,10 +178,17 @@ body {
 .dropdown__toggle--utensils {
   background-color: #ED6454;
 }
+.dropdown__toggle--active {
+  width: 41.6875rem;
+  border-radius: 0.3125rem 0.3125rem 0 0;
+}
 .dropdown__label {
   position: relative;
 }
 .dropdown__menu {
+  display: none;
+}
+.dropdown__menu--active {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   width: 41.6875rem;
@@ -185,7 +196,7 @@ body {
   font-size: 1.125rem;
   color: white;
   padding: 1.25rem;
-  border-radius: 0.3125rem;
+  border-radius: 0 0 0.3125rem 0.3125rem;
 }
 .dropdown__menu--ingredients {
   background-color: #3282F7;

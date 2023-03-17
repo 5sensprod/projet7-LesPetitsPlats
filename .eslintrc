@@ -11,6 +11,6 @@
   },
   "extends": [
     "eslint:recommended"
-  ],
-  "ignorePatterns": ["bootstrap.min.js"]
+  ]
+  // "ignorePatterns": ["bootstrap.min.js"]
 }

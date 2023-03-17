@@ -31,13 +31,14 @@
 
 // Styles pour les dropbox
 @mixin dropdown-base-style {
-    height: 69px;
-    width: 170px;
-    border-radius: 5px;
+    height: rem(69);
+    width: rem(170);
+    border-radius: rem(5);
     font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: rem(18);
+    line-height: rem(22);
     color: #FFFFFF;
+    transition: width 0.5s ease-in-out;
 }

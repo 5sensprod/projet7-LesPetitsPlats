@@ -19,6 +19,7 @@
         &--utensils {
             background-color: #ED6454;
         }
+
         &--active {
             width: rem(667);
             border-radius: rem(5) rem(5) 0 0;
@@ -44,6 +45,7 @@
             padding: map-get($spacing, 'md');
             border-radius: 0 0 rem(5) rem(5);
         }
+
         &--ingredients {
             background-color: #3282F7;
         }

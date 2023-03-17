@@ -155,6 +155,9 @@ body {
   overflow: hidden;
 }
 
+.dropdown {
+  position: relative;
+}
 .dropdown__toggle {
   height: 69px;
   width: 170px;
@@ -189,6 +192,7 @@ body {
   display: none;
 }
 .dropdown__menu--active {
+  position: absolute;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   width: 41.6875rem;

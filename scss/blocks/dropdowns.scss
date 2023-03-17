@@ -1,4 +1,5 @@
 .dropdown {
+    position: relative;
 
     &__toggle {
         @include dropdown-base-style;
@@ -29,10 +30,11 @@
     }
 
     &__menu {
-
         display: none;
 
+
         &--active {
+            position: absolute;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             width: rem(667);

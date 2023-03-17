@@ -1,7 +1,7 @@
 import { createRecipeCard } from "../factories/recipesFactory.js";
 import { addUniqueListItem } from "../utilities/utils.js";
 
-fetch('./data/recipes.json')
+fetch('https://5sensprod.github.io/projet7-LesPetitsPlats/data/recipes.json')
   .then(response => response.json())
   .then(data => {
     // Créer les éléments de la liste d'ingrédients

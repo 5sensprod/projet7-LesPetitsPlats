@@ -10,6 +10,10 @@ export function createRecipeCard(recipe) {
   const card = document.createElement("article");
   card.classList.add("recipe-card");
 
+  // Création d'une div parente pour tous les éléments sauf la div de l'image
+  const contentContainer = document.createElement("div");
+  contentContainer.classList.add("recipe-card__content-container");
+
   const imgContainer = document.createElement("div");
   imgContainer.classList.add("recipe-card__img-container");
 
@@ -33,7 +37,7 @@ export function createRecipeCard(recipe) {
   time.innerHTML = '<i class="far fa-clock"></i> ' + recipe.time + ' min';
   titleTimeContainer.appendChild(time);
 
-  card.appendChild(titleTimeContainer);
+  contentContainer.appendChild(titleTimeContainer);
 
   const descriptionIngredientsContainer = document.createElement("div");
   descriptionIngredientsContainer.classList.add("recipe-card__description-ingredients-container");
@@ -62,7 +66,6 @@ export function createRecipeCard(recipe) {
 
   const descriptionTitle = document.createElement("h3");
   descriptionTitle.classList.add("recipe-card__description-title");
-  descriptionTitle.textContent = "Description";
   description.appendChild(descriptionTitle);
 
   const descriptionText = document.createElement("p");
@@ -71,7 +74,8 @@ export function createRecipeCard(recipe) {
   description.appendChild(descriptionText);
 
   descriptionIngredientsContainer.appendChild(description);
-  card.appendChild(descriptionIngredientsContainer);
+  contentContainer.appendChild(descriptionIngredientsContainer);
+  card.appendChild(contentContainer);
 
   return card;
 }

@@ -1,37 +1,55 @@
 .recipe-card {
   max-width: rem(360);
+  height: rem(364);
+  background-color: $color-bg-light;
+  border-radius: rem(5);
 
   &__img-container {
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
+    height: rem(178);
+  }
+
+  &__content-container {
+    height: rem(186);
   }
 
   &__title-time-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: map-get($spacing, 'md');
+    font-size: rem(18);
+    padding: 0 rem(20);
 
     & .recipe-card__title {
-      font-size: 1.8rem;
-      font-weight: bold;
+      width: 70%;
     }
 
     & .recipe-card__time {
-      font-size: 1.2rem;
-      color: #888;
+      font-weight: 700;
     }
   }
 
   &__description-ingredients-container {
     display: flex;
     width: 100%;
+    padding: 0 rem(20);
+    height: 55%;
   }
 
   &__servings-ingredients-container {
     width: 50%;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   &__description-container {
     width: 50%;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }

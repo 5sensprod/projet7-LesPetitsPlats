@@ -7,7 +7,7 @@ export function displayInSearchCriteria(text) {
   
     // Créez l'icône de fermeture et ajoutez la classe Font Awesome
     const closeButton = document.createElement('i');
-    closeButton.classList.add('fas', 'fa-times-circle-o', 'search-criteria__close-icon');
+    closeButton.classList.add('fas', 'fa-times', 'search-criteria__close-icon');
   
     // Ajoutez un gestionnaire d'événements de clic pour supprimer le critère
     closeButton.addEventListener('click', () => {

@@ -4,9 +4,19 @@
   background-color: $color-bg-light;
   border-radius: rem(5);
 
-  &__img-container {
-    // margin-bottom: 20px;
+  &__image-container {
     height: rem(178);
+    width: 100%;
+    // border-radius: rem(5) rem(5) 0 0;
+    // overflow: hidden;
+  }
+
+  &__image {
+    height: 178px;
+width: 100%;
+object-fit: cover;
+border-radius: 5px 5px 0 0;
+margin-bottom: map-get($spacing, 'md');
   }
 
   &__content-container {

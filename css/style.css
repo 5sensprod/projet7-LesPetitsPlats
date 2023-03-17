@@ -114,8 +114,16 @@ body {
   background-color: #E7E7E7;
   border-radius: 0.3125rem;
 }
-.recipe-card__img-container {
+.recipe-card__image-container {
   height: 11.125rem;
+  width: 100%;
+}
+.recipe-card__image {
+  height: 178px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 1.25rem;
 }
 .recipe-card__content-container {
   height: 11.625rem;

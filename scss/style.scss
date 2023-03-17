@@ -11,12 +11,14 @@
 
 // Import des formats de fichiers
 @import 'blocks/search-recipe.scss';
+@import 'blocks/card-recipe.scss';
 
 // Utilisation du style pour le header
 .header {
     @include header;
 }
 
+// style pour le bloc-page
 .bloc-page {
     display: flex;
     flex-direction: column;
@@ -25,8 +27,17 @@
     padding: 0 2%;
 }
 
+// Style pour le container des dropdowns
 .dropdown-container {
     display: flex;
     gap: map-get($spacing, 'md');
     margin-bottom: map-get($spacing, 'xxxl');
+}
+
+//style pour le container des cards de recettes
+.recipes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: map-get($spacing, 'md');
 }

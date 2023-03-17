@@ -35,6 +35,9 @@ export function createRecipeCard(recipe) {
 
   card.appendChild(titleTimeContainer);
 
+  const descriptionIngredientsContainer = document.createElement("div");
+  descriptionIngredientsContainer.classList.add("recipe-card__description-ingredients-container");
+
   const servingsIngredientsContainer = document.createElement("div");
   servingsIngredientsContainer.classList.add("recipe-card__servings-ingredients-container");
 
@@ -47,12 +50,12 @@ export function createRecipeCard(recipe) {
   ingredients.classList.add("recipe-card__ingredients");
   recipe.ingredients.forEach(ingredient => {
     const li = document.createElement("li");
-    li.textContent = ingredient.ingredient + " - " + ingredient.quantity + " " + (ingredient.unit ? ingredient.unit : "");
+    li.textContent = ingredient.ingredient + " : " + ingredient.quantity + " " + (ingredient.unit ? ingredient.unit : "");
     ingredients.appendChild(li);
   });
   servingsIngredientsContainer.appendChild(ingredients);
 
-  card.appendChild(servingsIngredientsContainer);
+  descriptionIngredientsContainer.appendChild(servingsIngredientsContainer);
 
   const description = document.createElement("div");
   description.classList.add("recipe-card__description-container");
@@ -67,7 +70,8 @@ export function createRecipeCard(recipe) {
   descriptionText.textContent = recipe.description;
   description.appendChild(descriptionText);
 
-  card.appendChild(description);
+  descriptionIngredientsContainer.appendChild(description);
+  card.appendChild(descriptionIngredientsContainer);
 
   return card;
 }

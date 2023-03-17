@@ -43,76 +43,6 @@ td, th {
   padding: 0;
 }
 
-.dropdown {
-  position: relative;
-}
-.dropdown .dropdown__toggle {
-  height: 69px;
-  width: 170px;
-  border-radius: 5px;
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 22px;
-  color: #FFFFFF;
-  text-align: left;
-  padding-left: 1.25rem;
-  border: none;
-}
-.dropdown .dropdown__toggle--ingredients {
-  background-color: #3282F7;
-}
-.dropdown .dropdown__toggle--appliances {
-  background-color: #68D9A4;
-}
-.dropdown .dropdown__toggle--utensils {
-  background-color: #ED6454;
-}
-.dropdown .dropdown__icon {
-  position: absolute;
-  color: white;
-  font-size: 1.0625rem;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.dropdown {
-  position: relative;
-}
-.dropdown .dropdown__toggle {
-  height: 69px;
-  width: 170px;
-  border-radius: 5px;
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 22px;
-  color: #FFFFFF;
-  text-align: left;
-  padding-left: 1.25rem;
-  border: none;
-}
-.dropdown .dropdown__toggle--ingredients {
-  background-color: #3282F7;
-}
-.dropdown .dropdown__toggle--appliances {
-  background-color: #68D9A4;
-}
-.dropdown .dropdown__toggle--utensils {
-  background-color: #ED6454;
-}
-.dropdown .dropdown__icon {
-  position: absolute;
-  color: white;
-  font-size: 1.0625rem;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 h1 {
   font-family: "DM Sans", sans-serif;
   font-style: normal;
@@ -219,6 +149,60 @@ body {
   -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.dropdown__toggle {
+  height: 69px;
+  width: 170px;
+  border-radius: 5px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+  text-align: left;
+  padding-left: 1.25rem;
+  border: none;
+}
+.dropdown__toggle--ingredients {
+  background-color: #3282F7;
+}
+.dropdown__toggle--appliances {
+  background-color: #68D9A4;
+}
+.dropdown__toggle--utensils {
+  background-color: #ED6454;
+}
+.dropdown__label {
+  position: relative;
+}
+.dropdown__menu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 41.6875rem;
+  gap: 0.625rem;
+  font-size: 1.125rem;
+  color: white;
+  padding: 1.25rem;
+  border-radius: 0.3125rem;
+}
+.dropdown__menu--ingredients {
+  background-color: #3282F7;
+}
+.dropdown__menu--appliances {
+  background-color: #68D9A4;
+}
+.dropdown__menu--utensils {
+  background-color: #ED6454;
+}
+.dropdown__icon {
+  position: absolute;
+  color: white;
+  font-size: 1.0625rem;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .header {

@@ -1,0 +1,59 @@
+.dropdown {
+
+    &__toggle {
+        @include dropdown-base-style;
+        text-align: left;
+        padding-left: map-get($spacing, 'md');
+        border: none;
+
+        // background-color: #D04F4F;
+        &--ingredients {
+            background-color: #3282F7;
+        }
+
+        &--appliances {
+            background-color: #68D9A4;
+        }
+
+        &--utensils {
+            background-color: #ED6454;
+        }
+    }
+
+    &__label {
+        position: relative;
+    }
+
+    &__menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: rem(667);
+        gap: rem(10);
+        font-size: rem(18);
+        color: white;
+        padding: map-get($spacing, 'md');
+        ;
+        border-radius: rem(5);
+
+        &--ingredients {
+            background-color: #3282F7;
+        }
+
+        &--appliances {
+            background-color: #68D9A4;
+        }
+
+        &--utensils {
+            background-color: #ED6454;
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        color: white;
+        font-size: rem(17);
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

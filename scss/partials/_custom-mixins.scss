@@ -41,35 +41,3 @@
     line-height: 22px;
     color: #FFFFFF;
 }
-
-.dropdown {
-    position: relative;
-
-    .dropdown__toggle {
-        @include dropdown-base-style;
-        text-align: left;
-        padding-left: map-get($spacing, 'md');
-        border: none;
-        // background-color: #D04F4F;
-        &--ingredients {
-            background-color: #3282F7;
-        }
-        &--appliances {
-            background-color: #68D9A4;
-        }
-        &--utensils {
-            background-color: #ED6454;
-        }
-    }
-
-    .dropdown__label {}
-
-    .dropdown__icon {
-        position: absolute;
-        color: white;
-        font-size: rem(17);
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-}

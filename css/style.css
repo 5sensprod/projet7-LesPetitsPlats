@@ -230,7 +230,7 @@ body {
 .dropdown__menu--utensils {
   background-color: #ED6454;
 }
-.dropdown__item {
+.dropdown__menu-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -239,7 +239,7 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
-.dropdown__item:hover {
+.dropdown__menu-item:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -251,6 +251,19 @@ body {
   font-size: 0.875rem;
   margin-bottom: 0.9375rem;
   margin-right: 0.8125rem;
+}
+.search-criteria__container {
+  display: flex;
+  width: auto;
+}
+.search-criteria__container--ingredient {
+  background-color: #3282F7;
+}
+.search-criteria__container--appliance {
+  background-color: #68D9A4;
+}
+.search-criteria__container--utensil {
+  background-color: #ED6454;
 }
 .search-criteria__close-icon {
   margin-left: 0.8125rem;

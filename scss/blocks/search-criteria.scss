@@ -6,6 +6,21 @@
         margin-bottom: rem(15);
         margin-right: rem(13);
     }
+    &__container {
+        display: flex;
+        width: auto;
+
+        &--ingredient {
+            background-color:   #3282F7;
+        }
+        &--appliance {
+            background-color:   #68D9A4;
+        }
+        &--utensil {
+            background-color:   #ED6454;;
+        }
+
+    }
     &__close-icon {
         margin-left: rem(13);
         font-size: rem(14);

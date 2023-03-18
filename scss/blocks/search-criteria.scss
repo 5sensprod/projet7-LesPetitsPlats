@@ -1,14 +1,16 @@
 .search-criteria {
     display: flex;
-    &__item{
-        font-weight: 700;
-        font-size: rem(14);
-        margin-bottom: rem(15);
-        margin-right: rem(13);
-    }
+    gap: rem(20);
+    
+
     &__container {
         display: flex;
-        width: auto;
+        align-items: center;
+        gap: rem(13);
+        padding: rem(10) rem(20);
+        color: white;
+        border-radius: rem(5);
+        margin-bottom: rem(15);
 
         &--ingredient {
             background-color:   #3282F7;
@@ -21,8 +23,14 @@
         }
 
     }
+    &__item{
+        font-weight: 700;
+        font-size: rem(14);
+        // margin-right: rem(13);
+
+    }
     &__close-icon {
-        margin-left: rem(13);
+        // margin-left: rem(13);
         font-size: rem(14);
         color: $color-text-dark;
         cursor: pointer;

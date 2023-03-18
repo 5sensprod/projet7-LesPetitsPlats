@@ -245,16 +245,16 @@ body {
 
 .search-criteria {
   display: flex;
-}
-.search-criteria__item {
-  font-weight: 700;
-  font-size: 0.875rem;
-  margin-bottom: 0.9375rem;
-  margin-right: 0.8125rem;
+  gap: 1.25rem;
 }
 .search-criteria__container {
   display: flex;
-  width: auto;
+  align-items: center;
+  gap: 0.8125rem;
+  padding: 0.625rem 1.25rem;
+  color: white;
+  border-radius: 0.3125rem;
+  margin-bottom: 0.9375rem;
 }
 .search-criteria__container--ingredient {
   background-color: #3282F7;
@@ -265,8 +265,11 @@ body {
 .search-criteria__container--utensil {
   background-color: #ED6454;
 }
+.search-criteria__item {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
 .search-criteria__close-icon {
-  margin-left: 0.8125rem;
   font-size: 0.875rem;
   color: #000000;
   cursor: pointer;

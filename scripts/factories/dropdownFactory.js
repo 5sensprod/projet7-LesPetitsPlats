@@ -4,7 +4,7 @@ import {displayInSearchCriteria} from '../handlers/searchCriteria.js';
 
 export function createListItem(textContent) {
   const listItem = document.createElement("li");
-  listItem.classList.add("dropdown__menu-item");
+  listItem.classList.add("dropdown__item");
   listItem.textContent = textContent;
 
   listItem.addEventListener('click', () => {

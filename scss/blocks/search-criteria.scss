@@ -1,0 +1,15 @@
+.search-criteria {
+    display: flex;
+    &__item{
+        font-weight: 700;
+        font-size: rem(14);
+        margin-bottom: rem(15);
+        margin-right: rem(13);
+    }
+    &__close-icon {
+        margin-left: rem(13);
+        font-size: rem(14);
+        color: $color-text-dark;
+        cursor: pointer;
+    }
+}

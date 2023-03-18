@@ -7,16 +7,14 @@
   &__image-container {
     height: rem(178);
     width: 100%;
-    // border-radius: rem(5) rem(5) 0 0;
-    // overflow: hidden;
   }
 
   &__image {
     height: 178px;
-width: 100%;
-object-fit: cover;
-border-radius: 5px 5px 0 0;
-margin-bottom: map-get($spacing, 'md');
+    width: 100%;
+    object-fit: cover;
+    border-radius: rem(5) rem(5) 0 0;
+    margin-bottom: map-get($spacing, 'md');
   }
 
   &__content-container {
@@ -26,13 +24,14 @@ margin-bottom: map-get($spacing, 'md');
   &__title-time-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: map-get($spacing, 'md');
+    align-items: flex-start;
+    margin-bottom: rem(16);
     font-size: rem(18);
     padding: 0 rem(20);
 
     & .recipe-card__title {
       width: 70%;
+      line-height: rem(16);
     }
 
     & .recipe-card__time {

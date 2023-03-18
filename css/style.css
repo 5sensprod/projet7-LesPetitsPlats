@@ -245,31 +245,35 @@ body {
 
 .search-criteria {
   display: flex;
-  gap: 1.25rem;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-bottom: 1.25rem;
 }
-.search-criteria__container {
+.search-criteria__list {
   display: flex;
   align-items: center;
-  gap: 0.8125rem;
-  padding: 0.625rem 1.25rem;
-  color: white;
-  border-radius: 0.3125rem;
-  margin-bottom: 0.9375rem;
-}
-.search-criteria__container--ingredient {
-  background-color: #3282F7;
-}
-.search-criteria__container--appliance {
-  background-color: #68D9A4;
-}
-.search-criteria__container--utensil {
-  background-color: #ED6454;
+  gap: 0.625rem;
 }
 .search-criteria__item {
+  display: flex;
+  align-items: center;
   font-weight: 700;
   font-size: 0.875rem;
+  border-radius: 0.3125rem;
+  padding: 0.625rem 1.25rem;
+  color: white;
+}
+.search-criteria__item--ingredient {
+  background-color: #3282F7;
+}
+.search-criteria__item--appliance {
+  background-color: #68D9A4;
+}
+.search-criteria__item--utensil {
+  background-color: #ED6454;
 }
 .search-criteria__close-icon {
+  margin-left: 0.8125rem;
   font-size: 0.875rem;
   color: #000000;
   cursor: pointer;

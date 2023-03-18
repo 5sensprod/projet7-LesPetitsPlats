@@ -1,16 +1,24 @@
 .search-criteria {
     display: flex;
-    gap: rem(20);
+    flex-direction: column;
+    gap: rem(10);
+    margin-bottom: rem(20);
     
-
-    &__container {
+    &__list {
         display: flex;
         align-items: center;
-        gap: rem(13);
+        gap: rem(10);
+        
+    }
+    &__item { 
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: rem(14);
+        border-radius: rem(5);
         padding: rem(10) rem(20);
         color: white;
-        border-radius: rem(5);
-        margin-bottom: rem(15);
+
 
         &--ingredient {
             background-color:   #3282F7;
@@ -23,14 +31,9 @@
         }
 
     }
-    &__item{
-        font-weight: 700;
-        font-size: rem(14);
-        // margin-right: rem(13);
 
-    }
     &__close-icon {
-        // margin-left: rem(13);
+        margin-left: rem(13);
         font-size: rem(14);
         color: $color-text-dark;
         cursor: pointer;

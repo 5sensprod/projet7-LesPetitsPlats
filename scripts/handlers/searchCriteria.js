@@ -1,20 +1,14 @@
 export function displayInSearchCriteria(text, listType) {
   const searchCriteriaDiv = document.querySelector('.search-criteria');
-  let searchCriteriaContainer = searchCriteriaDiv.querySelector(`.search-criteria__container--${listType}`);
   let searchCriteriaList = searchCriteriaDiv.querySelector(`.search-criteria__list--${listType}`);
 
-  // Vérifie si la div existante est trouvée
+  // Vérifie si la liste existante est trouvée
   if (!searchCriteriaList) {
-    // Si la liste n'existe pas, créer une nouvelle div avec la classe appropriée et la liste
-    searchCriteriaContainer = document.createElement('div');
-    searchCriteriaContainer.classList.add('search-criteria__container');
-    searchCriteriaContainer.classList.add(`search-criteria__container--${listType}`);
-    searchCriteriaDiv.appendChild(searchCriteriaContainer);
-
+    // Si la liste n'existe pas, créer une nouvelle liste avec la classe appropriée et l'ajouter à la div search-criteria
     searchCriteriaList = document.createElement('ul');
     searchCriteriaList.classList.add('search-criteria__list');
     searchCriteriaList.classList.add(`search-criteria__list--${listType}`);
-    searchCriteriaContainer.appendChild(searchCriteriaList);
+    searchCriteriaDiv.appendChild(searchCriteriaList);
   }
 
   // Vérifie si le critère existe déjà dans la liste
@@ -28,6 +22,7 @@ export function displayInSearchCriteria(text, listType) {
   // Sinon, ajouter simplement le critère à l'intérieur de la liste
   const searchCriteriaItem = document.createElement('li');
   searchCriteriaItem.classList.add('search-criteria__item');
+  searchCriteriaItem.classList.add(`search-criteria__item--${listType}`);
   searchCriteriaItem.textContent = text;
   searchCriteriaList.appendChild(searchCriteriaItem);
 
@@ -38,7 +33,7 @@ export function displayInSearchCriteria(text, listType) {
   closeButton.addEventListener('click', () => {
     searchCriteriaItem.remove();
     if (searchCriteriaList.querySelectorAll('.search-criteria__item').length === 0) {
-      searchCriteriaContainer.remove();
+      searchCriteriaList.remove();
     }
   });
   searchCriteriaItem.appendChild(closeButton);

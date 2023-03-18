@@ -2,9 +2,9 @@ export function displayInSearchCriteria(text, listType) {
   const searchCriteriaDiv = document.querySelector('.search-criteria');
   let searchCriteriaList = searchCriteriaDiv.querySelector(`.search-criteria__list--${listType}`);
 
-  // Vérifie si la liste existante est trouvée
+  // Vérifie si la div existante est trouvée
   if (!searchCriteriaList) {
-    // Si la liste n'existe pas, créer une nouvelle liste avec la classe appropriée et l'ajouter à la div search-criteria
+    // Si la liste n'existe pas, créer une nouvelle liste avec la classe appropriée
     searchCriteriaList = document.createElement('ul');
     searchCriteriaList.classList.add('search-criteria__list');
     searchCriteriaList.classList.add(`search-criteria__list--${listType}`);
@@ -37,4 +37,13 @@ export function displayInSearchCriteria(text, listType) {
     }
   });
   searchCriteriaItem.appendChild(closeButton);
+
+  // Ordonne les listes dans l'ordre ingrédients > appareils > ustensiles
+  const ingredientsList = searchCriteriaDiv.querySelector('.search-criteria__list--ingredient');
+  const appliancesList = searchCriteriaDiv.querySelector('.search-criteria__list--appliance');
+  const utensilsList = searchCriteriaDiv.querySelector('.search-criteria__list--utensil');
+
+  searchCriteriaDiv.appendChild(ingredientsList);
+  searchCriteriaDiv.appendChild(appliancesList);
+  searchCriteriaDiv.appendChild(utensilsList);
 }

@@ -2,6 +2,15 @@
 // import { displayInSearchCriteria } from "../handlers/searchCriteria.js";
 // import { createListItem } from "../factories/dropdownFactory.js";
 
+// Met une majuscule au élements de la liste
+function capitalize(str) {
+  const words = str.split(' ');
+  const firstWord = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+  words[0] = firstWord;
+  return words.join(' ');
+}
+
+
 export function addUniqueListItem(list, item, type) {
   // Vérifier si l'élément existe déjà dans la liste
   const existingItem = list.querySelector(`.dropdown__menu-item--${type}[data-name="${item}"]`);
@@ -18,7 +27,8 @@ export function addUniqueListItem(list, item, type) {
     const listItem = document.createElement('li');
     listItem.classList.add('dropdown__menu-item');
     listItem.classList.add(`dropdown__menu-item--${type}`);
-    listItem.textContent = item;
+    const capitalizedItem = capitalize(item);
+    listItem.textContent = capitalizedItem;
     listItem.setAttribute('data-name', item);
     list.appendChild(listItem);
   }

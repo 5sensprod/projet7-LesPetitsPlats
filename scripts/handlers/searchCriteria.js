@@ -43,7 +43,13 @@ export function displayInSearchCriteria(text, listType) {
   const appliancesList = searchCriteriaDiv.querySelector('.search-criteria__list--appliance');
   const utensilsList = searchCriteriaDiv.querySelector('.search-criteria__list--utensil');
 
-  searchCriteriaDiv.appendChild(ingredientsList);
-  searchCriteriaDiv.appendChild(appliancesList);
-  searchCriteriaDiv.appendChild(utensilsList);
+  if (ingredientsList) {
+    searchCriteriaDiv.appendChild(ingredientsList);
+  }
+  if (appliancesList) {
+    searchCriteriaDiv.appendChild(appliancesList);
+  }
+  if (utensilsList) {
+    searchCriteriaDiv.appendChild(utensilsList);
+  }
 }

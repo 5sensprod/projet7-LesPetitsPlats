@@ -12,7 +12,7 @@ fetch('https://5sensprod.github.io/projet7-LesPetitsPlats/data/recipes.json')
     const appliancesList = document.getElementById("sort-by-appliances");
 
     // Créer les éléments de la liste d'ustensiles
-    const utensilsList = document.getElementById("sort-by-utensils");
+    const ustensilsList = document.getElementById("sort-by-ustensils");
 
     // Créer les cartes de recettes
     const recipesContainer = document.querySelector('.recipes-container');
@@ -27,8 +27,8 @@ fetch('https://5sensprod.github.io/projet7-LesPetitsPlats/data/recipes.json')
         addUniqueListItem(ingredientsList, ingredient.ingredient, 'ingredient');
       });
 
-      recipe.ustensils.forEach(utensil => {
-        addUniqueListItem(utensilsList, utensil, 'utensil');
+      recipe.ustensils.forEach(ustensil => {
+        addUniqueListItem(ustensilsList, ustensil, 'ustensil');
       });
 
       addUniqueListItem(appliancesList, recipe.appliance, 'appliance');
@@ -41,9 +41,9 @@ fetch('https://5sensprod.github.io/projet7-LesPetitsPlats/data/recipes.json')
       });
     });
 
-    utensilsList.querySelectorAll(".dropdown__menu-item").forEach(listItem => {
+    ustensilsList.querySelectorAll(".dropdown__menu-item").forEach(listItem => {
       listItem.addEventListener('click', () => {
-        displayInSearchCriteria(listItem.textContent, 'utensil');
+        displayInSearchCriteria(listItem.textContent, 'ustensil');
       });
     });
 

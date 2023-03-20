@@ -41,7 +41,7 @@ export function displayInSearchCriteria(text, listType) {
   // Ordonne les listes dans l'ordre ingrédients > appareils > ustensiles
   const ingredientsList = searchCriteriaDiv.querySelector('.search-criteria__list--ingredient');
   const appliancesList = searchCriteriaDiv.querySelector('.search-criteria__list--appliance');
-  const utensilsList = searchCriteriaDiv.querySelector('.search-criteria__list--utensil');
+  const ustensilsList = searchCriteriaDiv.querySelector('.search-criteria__list--ustensil');
 
   if (ingredientsList) {
     searchCriteriaDiv.appendChild(ingredientsList);
@@ -49,7 +49,7 @@ export function displayInSearchCriteria(text, listType) {
   if (appliancesList) {
     searchCriteriaDiv.appendChild(appliancesList);
   }
-  if (utensilsList) {
-    searchCriteriaDiv.appendChild(utensilsList);
+  if (ustensilsList) {
+    searchCriteriaDiv.appendChild(ustensilsList);
   }
 }

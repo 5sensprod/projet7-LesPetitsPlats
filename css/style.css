@@ -190,7 +190,7 @@ body {
 .dropdown__toggle--appliances {
   background-color: #68D9A4;
 }
-.dropdown__toggle--utensils {
+.dropdown__toggle--ustensils {
   background-color: #ED6454;
 }
 .dropdown__toggle--active {
@@ -227,7 +227,7 @@ body {
 .dropdown__menu--appliances {
   background-color: #68D9A4;
 }
-.dropdown__menu--utensils {
+.dropdown__menu--ustensils {
   background-color: #ED6454;
 }
 .dropdown__menu-item {

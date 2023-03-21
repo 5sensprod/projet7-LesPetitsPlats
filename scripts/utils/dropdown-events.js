@@ -54,12 +54,13 @@ export function addDropdownEvents() {
 function removeListItemAndCheckParent(listItem) {
     const parentList = listItem.parentElement;
     listItem.remove();
-  
+
     // Vérifie si le parent 'ul' est vide après la suppression du 'listItem'
     if (parentList.childElementCount === 0) {
-      parentList.remove();
+        parentList.remove();
     }
-  }
+}
+
 
 export function addClickEventToDropdownItem() {
     const ingredientListItems = document.querySelectorAll('.dropdown__menu--ingredients .dropdown__menu-item');

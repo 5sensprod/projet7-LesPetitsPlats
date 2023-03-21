@@ -1,5 +1,20 @@
 import { generateCriteriaList } from './recipe-ui.js';
 
+function addActiveClassToDropdownParent(dropdown) {
+    removeActiveClassFromOtherDropdowns(dropdown);
+    if (dropdown) {
+        dropdown.classList.add('dropdown--active');
+    }
+}
+function removeActiveClassFromOtherDropdowns(selectedDropdown) {
+    const allDropdowns = document.querySelectorAll('.dropdown');
+    allDropdowns.forEach(dropdown => {
+        if (dropdown !== selectedDropdown) {
+            dropdown.classList.remove('dropdown--active');
+        }
+    });
+}
+
 export function addDropdownEvents() {
     // Ajouter des événements click pour ouvrir et fermer les dropdowns
     const ingredientsDropdown = document.querySelector('.dropdown__toggle--ingredients');
@@ -36,18 +51,24 @@ export function addDropdownEvents() {
         closeOtherMenus(ingredientsMenu, ingredientsDropdown);
         ingredientsMenu.classList.toggle('dropdown__menu--active');
         toggleInputType(ingredientsDropdown, 'Ingrédients');
+        const dropdownParent = ingredientsDropdown.closest('.dropdown');
+        addActiveClassToDropdownParent(dropdownParent);
     });
 
     appliancesDropdown.addEventListener('click', () => {
         closeOtherMenus(appliancesMenu, appliancesDropdown);
         appliancesMenu.classList.toggle('dropdown__menu--active');
         toggleInputType(appliancesDropdown, 'Appareils');
+        const dropdownParent = appliancesDropdown.closest('.dropdown');
+        addActiveClassToDropdownParent(dropdownParent);
     });
 
     ustensilsDropdown.addEventListener('click', () => {
         closeOtherMenus(ustensilsMenu, ustensilsDropdown);
         ustensilsMenu.classList.toggle('dropdown__menu--active');
         toggleInputType(ustensilsDropdown, 'Ustensiles');
+        const dropdownParent = ustensilsDropdown.closest('.dropdown');
+        addActiveClassToDropdownParent(dropdownParent);
     });
 }
 
@@ -60,8 +81,6 @@ function removeListItemAndCheckParent(listItem) {
         parentList.remove();
     }
 }
-
-
 export function addClickEventToDropdownItem() {
     const ingredientListItems = document.querySelectorAll('.dropdown__menu--ingredients .dropdown__menu-item');
     ingredientListItems.forEach(item => {

@@ -35,10 +35,10 @@ export function singularize(word) {
 
 export function capitalizeFirstWord(str) {
     if (typeof str !== 'string') {
-      console.error('capitalizeFirstWord: La valeur entrée n\'est pas une chaîne de caractères:', str);
-      return str;
+        console.error('capitalizeFirstWord: La valeur entrée n\'est pas une chaîne de caractères:', str);
+        return str;
     }
-  
+
     const [firstWord, ...rest] = str.split(' ');
     return [firstWord.charAt(0).toUpperCase() + firstWord.slice(1), ...rest].join(' ');
-  }
+}

@@ -54,40 +54,40 @@ export function addDropdownEvents() {
 export function addClickEventToDropdownItem() {
     const ingredientListItems = document.querySelectorAll('.dropdown__menu--ingredients .dropdown__menu-item');
     ingredientListItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const listItem = generateCriteriaList('ingredient', item.textContent);
-        if (listItem !== null) {
-          const closeIcon = listItem.querySelector('.search-criteria__close-icon');
-          closeIcon.addEventListener('click', () => {
-            listItem.remove();
-          });
-        }
-      });
+        item.addEventListener('click', () => {
+            const listItem = generateCriteriaList('ingredient', item.textContent);
+            if (listItem !== null) {
+                const closeIcon = listItem.querySelector('.search-criteria__close-icon');
+                closeIcon.addEventListener('click', () => {
+                    listItem.remove();
+                });
+            }
+        });
     });
-  
+
     const applianceListItems = document.querySelectorAll('.dropdown__menu--appliances .dropdown__menu-item');
     applianceListItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const listItem = generateCriteriaList('appliance', item.textContent);
-        if (listItem !== null) {
-          const closeIcon = listItem.querySelector('.search-criteria__close-icon');
-          closeIcon.addEventListener('click', () => {
-            listItem.remove();
-          });
-        }
-      });
+        item.addEventListener('click', () => {
+            const listItem = generateCriteriaList('appliance', item.textContent);
+            if (listItem !== null) {
+                const closeIcon = listItem.querySelector('.search-criteria__close-icon');
+                closeIcon.addEventListener('click', () => {
+                    listItem.remove();
+                });
+            }
+        });
     });
-  
+
     const ustensilListItems = document.querySelectorAll('.dropdown__menu--ustensils .dropdown__menu-item');
     ustensilListItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const listItem = generateCriteriaList('ustensil', item.textContent);
-        if (listItem !== null) {
-          const closeIcon = listItem.querySelector('.search-criteria__close-icon');
-          closeIcon.addEventListener('click', () => {
-            listItem.remove();
-          });
-        }
-      });
+        item.addEventListener('click', () => {
+            const listItem = generateCriteriaList('ustensil', item.textContent);
+            if (listItem !== null) {
+                const closeIcon = listItem.querySelector('.search-criteria__close-icon');
+                closeIcon.addEventListener('click', () => {
+                    listItem.remove();
+                });
+            }
+        });
     });
-  }
+}

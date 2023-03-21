@@ -1,11 +1,3 @@
-/**
- * Fonction factory qui crée une carte de recette HTML
- * en se basant sur un objet de recette passé en paramètre.
- *
- * @param {Object} recipe - L'objet recette à afficher dans la carte.
- * @returns {HTMLDivElement} - Un élément article représentant la carte de recette.
- */
-
 export function createRecipeCard(recipe) {
   const card = document.createElement("article");
   card.classList.add("recipe-card");
@@ -22,7 +14,7 @@ export function createRecipeCard(recipe) {
   image.setAttribute("src", "img/recipes/" + recipe.id + ".jpg");
   image.setAttribute("alt", recipe.name);
   imgContainer.appendChild(image);
-  card.appendChild(imgContainer);
+  contentContainer.appendChild(imgContainer); // Ajout de l'image au conteneur principal
 
   const titleTimeContainer = document.createElement("div");
   titleTimeContainer.classList.add("recipe-card__title-time-container");
@@ -52,7 +44,7 @@ export function createRecipeCard(recipe) {
 
   const ingredients = document.createElement("ul");
   ingredients.classList.add("recipe-card__ingredients");
-  recipe.ingredients.forEach(ingredient => {
+  recipe.originalData.ingredients.forEach(ingredient => {
     const li = document.createElement("li");
     li.textContent = ingredient.ingredient + " : " + ingredient.quantity + " " + (ingredient.unit ? ingredient.unit : "");
     ingredients.appendChild(li);

@@ -1,10 +1,15 @@
-import { createRecipeCard } from "../factories/recipesFactory.js";
+import { setRecipeData } from './sharedData.js';
+
+import { createRecipeCard } from "../factories/recipeCardFactory.js";
 import { addUniqueListItem } from "../utilities/utils.js";
 import { displayInSearchCriteria } from "../handlers/searchCriteria.js";
+
 
 fetch('https://5sensprod.github.io/projet7-LesPetitsPlats/data/recipes.json')
   .then(response => response.json())
   .then(data => {
+    // Stocker les données de recettes dans sharedData
+    setRecipeData(data);
     // Créer les éléments de la liste d'ingrédients
     const ingredientsList = document.getElementById("sort-by-ingredients");
 

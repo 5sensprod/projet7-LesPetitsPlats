@@ -19,8 +19,8 @@
     <!-- Fichiers JavaScript de Bootstrap -->
     <!-- <script src="scripts/bootstrap/bootstrap.min.js" defer></script> -->
     <!-- Fichier JavaScript personnalisé -->
-    <script type="module" src="scripts/data-source/recipesFetcher.js" defer></script>
-    <script type="module" src="scripts/utilities/domUtils.js" defer></script>
+    <script type="module" src="scripts/main.js" defer></script>
+    <!-- <script type="module" src="scripts/utilities/domUtils.js" defer></script> -->
     <!-- <script type="module" src="scripts/data-source/dropdownManager.js" defer></script> -->
 
 </head>
@@ -47,34 +47,6 @@
         </div>
         <!--  Recherche par ingrédient, appareil, ustensile -->
         <div class="dropdown-container">
-            <div class="dropdown">
-                <input type="button" class="dropdown__toggle dropdown__toggle--ingredients" value="Ingrédients">
-                <label for="sort-by-ingredients" class="dropdown__label">
-                    <i class="fas fa-chevron-down dropdown__icon"></i>
-                </label>
-                <ul id="sort-by-ingredients" class="dropdown__menu dropdown__menu--ingredients">
-                    <!-- Liste des ingrédients générée dynamiquement -->
-                </ul>
-            </div>
-            <div class="dropdown">
-                <input type="button" class="dropdown__toggle dropdown__toggle--appliances" value="Appareils">
-                <label for="sort-by-appliances" class="dropdown__label">
-                    <i class="fas fa-chevron-down dropdown__icon"></i>
-                </label>
-                <ul id="sort-by-appliances" class="dropdown__menu dropdown__menu--appliances">
-                    <!-- Liste des ingrédients générée dynamiquement -->
-                </ul>
-            </div>
-
-            <div class="dropdown">
-                <input type="button" class="dropdown__toggle dropdown__toggle--ustensils" value="Ustensiles">
-                <label for="sort-by-ustensils" class="dropdown__label">
-                    <i class="fas fa-chevron-down dropdown__icon"></i>
-                </label>
-                <ul id="sort-by-ustensils" class="dropdown__menu dropdown__menu--ustensils">
-                    <!-- Liste des ingrédients générée dynamiquement -->
-                </ul>
-            </div>
         </div>
         <!--  Liste des recettes -->
         <div class="recipes-container">

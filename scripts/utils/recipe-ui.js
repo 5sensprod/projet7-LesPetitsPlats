@@ -1,5 +1,6 @@
 import { createRecipeCard } from '../factories/recipeCardFactory.js';
 import { createDropdownButton, createIngredientList, createUstensilList, createApplianceList } from '../factories/dropdownFactory.js';
+import { createCriteriaList } from '../factories/criteriaFactory.js';
 import { normalizeString, singularize, capitalizeFirstWord } from './stringUtils.js';
 
 function getUniqueValues(arr, key) {
@@ -66,4 +67,27 @@ export function generateRecipeCards(recipeData) {
     const recipeCard = createRecipeCard(recipe);
     recipesContainer.appendChild(recipeCard);
   });
+}
+
+export function generateCriteriaList(type, text) {
+  let criteriaList = document.querySelector(`.search-criteria__list--${type}`);
+
+  // Si la liste n'existe pas, créez-la et ajoutez-la à la div.criteria-container
+  if (!criteriaList) {
+    criteriaList = document.createElement('ul');
+    criteriaList.classList.add('search-criteria__list', `search-criteria__list--${type}`);
+    const criteriaContainer = document.querySelector('.criteria-container');
+    criteriaContainer.appendChild(criteriaList);
+  }
+
+  // Vérifiez si un élément avec le même texte existe déjà
+  const existingItem = Array.from(criteriaList.children).find(item => item.textContent === text);
+  if (existingItem) {
+    // Si l'élément existe déjà, retournez null
+    return null;
+  }
+
+  const listItem = createCriteriaList(type, text);
+  criteriaList.appendChild(listItem);
+  return listItem;
 }

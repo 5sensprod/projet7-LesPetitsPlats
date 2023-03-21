@@ -1,5 +1,3 @@
-// import { capitalizeFirstWord } from './stringUtils.js';
-
 export function createDropdownButton(type) {
   const dropdown = document.createElement('div');
   dropdown.classList.add('dropdown');

@@ -1,13 +1,17 @@
-.search-criteria {
+.criteria-container {
     display: flex;
     flex-direction: column;
-    gap: rem(10);
-    margin-bottom: rem(20);
-    
+
+    // margin-bottom: rem(20);
+}
+
+.search-criteria {
+
     &__list {
         display: flex;
         align-items: center;
         gap: rem(10);
+      
         
     }
     &__item { 
@@ -18,6 +22,7 @@
         border-radius: rem(5);
         padding: rem(10) rem(20);
         color: white;
+        margin-bottom: rem(10);
 
 
         &--ingredient {
@@ -26,7 +31,7 @@
         &--appliance {
             background-color:   #68D9A4;
         }
-        &--utensil {
+        &--ustensil {
             background-color:   #ED6454;;
         }
 

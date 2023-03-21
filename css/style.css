@@ -1,10 +1,37 @@
 /*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
-html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, hr, h1, h2, h3, h4, h5, h6 {
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: 100%;
   font-weight: normal;
 }
@@ -13,7 +40,9 @@ ul {
   list-style: none;
 }
 
-button, input, select {
+button,
+input,
+select {
   margin: 0;
 }
 
@@ -21,11 +50,14 @@ html {
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
-img, video {
+img,
+video {
   height: auto;
   max-width: 100%;
 }
@@ -39,11 +71,16 @@ table {
   border-spacing: 0;
 }
 
-td, th {
+td,
+th {
   padding: 0;
 }
 
 input[type=text]:focus {
+  outline: none;
+}
+
+input[type=button]:focus {
   outline: none;
 }
 
@@ -243,12 +280,11 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.search-criteria {
+.criteria-container {
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
-  margin-bottom: 1.25rem;
 }
+
 .search-criteria__list {
   display: flex;
   align-items: center;
@@ -262,6 +298,7 @@ body {
   border-radius: 0.3125rem;
   padding: 0.625rem 1.25rem;
   color: white;
+  margin-bottom: 0.625rem;
 }
 .search-criteria__item--ingredient {
   background-color: #3282F7;
@@ -269,7 +306,7 @@ body {
 .search-criteria__item--appliance {
   background-color: #68D9A4;
 }
-.search-criteria__item--utensil {
+.search-criteria__item--ustensil {
   background-color: #ED6454;
 }
 .search-criteria__close-icon {

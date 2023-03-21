@@ -10,8 +10,8 @@ async function initialize() {
 
     generateDropdowns();
     generateDropdownLists(recipeData);
-    addDropdownEvents();
     generateRecipeCards(recipeData);
+    addDropdownEvents();
     addClickEventToDropdownItem();
 
     // Affiche les données dans la console

@@ -1,16 +1,14 @@
 import { generateCriteriaList } from './recipe-ui.js';
 
-function addActiveClassToDropdownParent(dropdown) {
-    removeActiveClassFromOtherDropdowns(dropdown);
-    if (dropdown) {
-        dropdown.classList.add('dropdown--active');
-    }
+function toggleActiveClassOnDropdownToggle(toggle) {
+    toggle.classList.toggle('dropdown__toggle--active');
 }
-function removeActiveClassFromOtherDropdowns(selectedDropdown) {
-    const allDropdowns = document.querySelectorAll('.dropdown');
-    allDropdowns.forEach(dropdown => {
-        if (dropdown !== selectedDropdown) {
-            dropdown.classList.remove('dropdown--active');
+
+function removeActiveClassFromOtherDropdownToggles(currentToggle) {
+    const allDropdownToggles = document.querySelectorAll('.dropdown__toggle');
+    allDropdownToggles.forEach(toggle => {
+        if (toggle !== currentToggle) {
+            toggle.classList.remove('dropdown__toggle--active');
         }
     });
 }
@@ -47,28 +45,24 @@ export function addDropdownEvents() {
         });
     }
 
+    function toggleDropdown(dropdownToggle, dropdownMenu, menuLabel) {
+        closeOtherMenus(dropdownMenu, dropdownToggle);
+        dropdownMenu.classList.toggle('dropdown__menu--active');
+        toggleInputType(dropdownToggle, menuLabel);
+        removeActiveClassFromOtherDropdownToggles(dropdownToggle);
+        toggleActiveClassOnDropdownToggle(dropdownToggle);
+    }
+
     ingredientsDropdown.addEventListener('click', () => {
-        closeOtherMenus(ingredientsMenu, ingredientsDropdown);
-        ingredientsMenu.classList.toggle('dropdown__menu--active');
-        toggleInputType(ingredientsDropdown, 'Ingrédients');
-        const dropdownParent = ingredientsDropdown.closest('.dropdown');
-        addActiveClassToDropdownParent(dropdownParent);
+        toggleDropdown(ingredientsDropdown, ingredientsMenu, 'Ingrédients');
     });
 
     appliancesDropdown.addEventListener('click', () => {
-        closeOtherMenus(appliancesMenu, appliancesDropdown);
-        appliancesMenu.classList.toggle('dropdown__menu--active');
-        toggleInputType(appliancesDropdown, 'Appareils');
-        const dropdownParent = appliancesDropdown.closest('.dropdown');
-        addActiveClassToDropdownParent(dropdownParent);
+        toggleDropdown(appliancesDropdown, appliancesMenu, 'Appareils');
     });
 
     ustensilsDropdown.addEventListener('click', () => {
-        closeOtherMenus(ustensilsMenu, ustensilsDropdown);
-        ustensilsMenu.classList.toggle('dropdown__menu--active');
-        toggleInputType(ustensilsDropdown, 'Ustensiles');
-        const dropdownParent = ustensilsDropdown.closest('.dropdown');
-        addActiveClassToDropdownParent(dropdownParent);
+        toggleDropdown(ustensilsDropdown, ustensilsMenu, 'Ustensiles');
     });
 }
 

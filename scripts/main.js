@@ -14,7 +14,7 @@ async function initialize() {
     generateRecipeCards(recipeData);
     addClickEventToDropdownItem();
 
-    // Afficher les données dans la console
+    // Affiche les données dans la console
     printRecipeData();
 }
 

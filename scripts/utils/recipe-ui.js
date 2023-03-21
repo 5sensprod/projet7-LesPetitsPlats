@@ -72,7 +72,7 @@ export function generateRecipeCards(recipeData) {
 export function generateCriteriaList(type, text) {
   let criteriaList = document.querySelector(`.search-criteria__list--${type}`);
 
-  // Si la liste n'existe pas, créez-la et ajoutez-la à la div.criteria-container
+  // Si la liste n'existe pas, l'ajoute à div.criteria-container
   if (!criteriaList) {
     criteriaList = document.createElement('ul');
     criteriaList.classList.add('search-criteria__list', `search-criteria__list--${type}`);
@@ -80,10 +80,10 @@ export function generateCriteriaList(type, text) {
     criteriaContainer.appendChild(criteriaList);
   }
 
-  // Vérifiez si un élément avec le même texte existe déjà
+  // Vérifie si un élément avec le même texte existe déjà
   const existingItem = Array.from(criteriaList.children).find(item => item.textContent === text);
   if (existingItem) {
-    // Si l'élément existe déjà, retournez null
+    // Si l'élément existe déjà, retourne null
     return null;
   }
 

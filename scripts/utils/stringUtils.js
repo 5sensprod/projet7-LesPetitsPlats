@@ -15,7 +15,7 @@ export function normalizeString(str) {
     let accentRegex = new RegExp(`[${accents}]`, 'g');
     normalizedStr = normalizedStr.replace(accentRegex, (match) => accentTable[match] || match);
 
-    // Supprimer les espaces en début et en fin de chaîne
+    // Supprime les espaces en début et en fin de chaîne
     normalizedStr = normalizedStr.trim();
 
     // Convertir les nombres en chaînes de caractères

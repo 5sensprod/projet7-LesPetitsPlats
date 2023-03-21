@@ -32,7 +32,7 @@ export function createIngredientList(ingredients, menu) {
   ingredients.forEach(ingredient => {
     const listItem = document.createElement('li');
     listItem.classList.add('dropdown__menu-item');
-    listItem.innerText = ingredient.original; // Utilisez les données originales ici
+    listItem.innerText = ingredient.original; // Utilise les données originales
     menu.appendChild(listItem);
   });
 }
@@ -43,7 +43,7 @@ export function createUstensilList(ustensils, menu) {
   ustensils.forEach(ustensil => {
     const listItem = document.createElement('li');
     listItem.classList.add('dropdown__menu-item');
-    listItem.innerText = ustensil.original; // Utilisez les données originales ici
+    listItem.innerText = ustensil.original; // Utilise les données originales
     menu.appendChild(listItem);
   });
 }
@@ -54,7 +54,7 @@ export function createApplianceList(appliances, menu) {
   appliances.forEach(appliance => {
     const listItem = document.createElement('li');
     listItem.classList.add('dropdown__menu-item');
-    listItem.innerText = appliance.original; // Utilisez les données originales ici
+    listItem.innerText = appliance.original; // Utilise les données originales
     menu.appendChild(listItem);
   });
 }

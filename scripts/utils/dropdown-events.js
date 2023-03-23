@@ -1,68 +1,50 @@
 import { generateCriteriaList } from './recipe-ui.js';
 
-function toggleActiveClassOnDropdownToggle(toggle) {
-    toggle.classList.toggle('dropdown__toggle--active');
-}
-
-function removeActiveClassFromOtherDropdownToggles(currentToggle) {
-    const allDropdownToggles = document.querySelectorAll('.dropdown__toggle');
-    allDropdownToggles.forEach(toggle => {
-        if (toggle !== currentToggle) {
-            toggle.classList.remove('dropdown__toggle--active');
-        }
-    });
-}
-
 export function addDropdownEvents() {
-    // Ajouter des événements click pour ouvrir et fermer les dropdowns
-    const ingredientsDropdown = document.querySelector('.dropdown__toggle--ingredients');
-    const appliancesDropdown = document.querySelector('.dropdown__toggle--appliances');
-    const ustensilsDropdown = document.querySelector('.dropdown__toggle--ustensils');
-    const ingredientsMenu = document.querySelector('.dropdown__menu--ingredients');
-    const appliancesMenu = document.querySelector('.dropdown__menu--appliances');
-    const ustensilsMenu = document.querySelector('.dropdown__menu--ustensils');
+    const dropdownToggles = [
+        { selector: '.dropdown__toggle--ingredients', label: 'Ingrédients' },
+        { selector: '.dropdown__toggle--appliances', label: 'Appareils' },
+        { selector: '.dropdown__toggle--ustensils', label: 'Ustensiles' },
+    ];
+    const dropdownMenus = dropdownToggles.map(toggle => document.querySelector(toggle.selector.replace('toggle', 'menu')));
 
-    function toggleInputType(input, menu) {
-        if (input.type === 'button') {
-            input.type = 'text';
-            input.value = '';
-            input.placeholder = `Rechercher par ${menu}`;
-        } else {
-            input.type = 'button';
-            input.value = menu;
-            input.placeholder = '';
-        }
+    function toggleInput(input, label) {
+        const isButton = input.type === 'button';
+        input.type = isButton ? 'text' : 'button';
+        input.value = isButton ? '' : label;
+        input.placeholder = isButton ? `Rechercher par ${label}` : '';
     }
 
-    function closeOtherMenus(currentMenu, currentDropdown) {
-        const menus = [ingredientsMenu, appliancesMenu, ustensilsMenu];
-        const dropdowns = [ingredientsDropdown, appliancesDropdown, ustensilsDropdown];
-        menus.forEach((menu, index) => {
+    function closeOtherMenus(currentMenu) {
+        dropdownMenus.forEach(menu => {
             if (menu !== currentMenu && menu.classList.contains('dropdown__menu--active')) {
                 menu.classList.remove('dropdown__menu--active');
-                toggleInputType(dropdowns[index], currentDropdown.value);
+                const toggleIndex = dropdownMenus.indexOf(menu);
+                const toggle = document.querySelector(dropdownToggles[toggleIndex].selector);
+                if (toggle.type === 'text') {
+                    toggleInput(toggle, dropdownToggles[toggleIndex].label);
+                }
             }
         });
     }
 
-    function toggleDropdown(dropdownToggle, dropdownMenu, menuLabel) {
-        closeOtherMenus(dropdownMenu, dropdownToggle);
-        dropdownMenu.classList.toggle('dropdown__menu--active');
-        toggleInputType(dropdownToggle, menuLabel);
-        removeActiveClassFromOtherDropdownToggles(dropdownToggle);
-        toggleActiveClassOnDropdownToggle(dropdownToggle);
-    }
+    dropdownToggles.forEach(({ selector, label }, index) => {
+        const toggle = document.querySelector(selector);
+        const menu = dropdownMenus[index];
 
-    ingredientsDropdown.addEventListener('click', () => {
-        toggleDropdown(ingredientsDropdown, ingredientsMenu, 'Ingrédients');
-    });
+        toggle.addEventListener('click', () => {
+            closeOtherMenus(menu);
+            menu.classList.toggle('dropdown__menu--active');
+            toggleInput(toggle, label);
 
-    appliancesDropdown.addEventListener('click', () => {
-        toggleDropdown(appliancesDropdown, appliancesMenu, 'Appareils');
-    });
-
-    ustensilsDropdown.addEventListener('click', () => {
-        toggleDropdown(ustensilsDropdown, ustensilsMenu, 'Ustensiles');
+            const allDropdownToggles = document.querySelectorAll('.dropdown__toggle');
+            allDropdownToggles.forEach(toggleElement => {
+                if (toggleElement !== toggle) {
+                    toggleElement.classList.remove('dropdown__toggle--active');
+                }
+            });
+            toggle.classList.toggle('dropdown__toggle--active');
+        });
     });
 }
 

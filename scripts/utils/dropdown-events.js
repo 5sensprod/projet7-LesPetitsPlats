@@ -57,43 +57,23 @@ function removeListItemAndCheckParent(listItem) {
         parentList.remove();
     }
 }
+function addClickEventToItems(itemSelector, criteriaType) {
+    const items = document.querySelectorAll(itemSelector);
+    items.forEach(item => {
+        item.addEventListener('click', () => {
+            const listItem = generateCriteriaList(criteriaType, item.textContent);
+            if (listItem !== null) {
+                const closeIcon = listItem.querySelector('.search-criteria__close-icon');
+                closeIcon.addEventListener('click', () => {
+                    removeListItemAndCheckParent(listItem);
+                });
+            }
+        });
+    });
+}
+
 export function addClickEventToDropdownItem() {
-    const ingredientListItems = document.querySelectorAll('.dropdown__menu--ingredients .dropdown__menu-item');
-    ingredientListItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const listItem = generateCriteriaList('ingredient', item.textContent);
-            if (listItem !== null) {
-                const closeIcon = listItem.querySelector('.search-criteria__close-icon');
-                closeIcon.addEventListener('click', () => {
-                    removeListItemAndCheckParent(listItem);
-                });
-            }
-        });
-    });
-
-    const applianceListItems = document.querySelectorAll('.dropdown__menu--appliances .dropdown__menu-item');
-    applianceListItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const listItem = generateCriteriaList('appliance', item.textContent);
-            if (listItem !== null) {
-                const closeIcon = listItem.querySelector('.search-criteria__close-icon');
-                closeIcon.addEventListener('click', () => {
-                    removeListItemAndCheckParent(listItem);
-                });
-            }
-        });
-    });
-
-    const ustensilListItems = document.querySelectorAll('.dropdown__menu--ustensils .dropdown__menu-item');
-    ustensilListItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const listItem = generateCriteriaList('ustensil', item.textContent);
-            if (listItem !== null) {
-                const closeIcon = listItem.querySelector('.search-criteria__close-icon');
-                closeIcon.addEventListener('click', () => {
-                    removeListItemAndCheckParent(listItem);
-                });
-            }
-        });
-    });
+    addClickEventToItems('.dropdown__menu--ingredients .dropdown__menu-item', 'ingredient');
+    addClickEventToItems('.dropdown__menu--appliances .dropdown__menu-item', 'appliance');
+    addClickEventToItems('.dropdown__menu--ustensils .dropdown__menu-item', 'ustensil');
 }

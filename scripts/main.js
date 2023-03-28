@@ -2,6 +2,7 @@ import { generateRecipeCards, generateDropdowns, generateDropdownLists } from '.
 import { addDropdownEvents, addClickEventToDropdownItem } from './utils/dropdown-events.js';
 import { getRecipeData, printRecipeData } from './data-source/dataShared.js';
 import { fetchData } from './data-source/dataFetch.js';
+import { addDropdownEventListeners } from './events/dropdownInputListeners.js';
 
 async function initialize() {
     await fetchData();
@@ -14,6 +15,7 @@ async function initialize() {
     addDropdownEvents();
     addClickEventToDropdownItem();
 
+    addDropdownEventListeners();
     // Affiche les données dans la console
     printRecipeData();
 }

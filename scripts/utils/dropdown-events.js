@@ -1,5 +1,5 @@
 import { generateCriteriaList } from './recipe-ui.js';
-
+import { addClickEventToDropdownItemsOfType} from '../events/dropdownInputListeners.js';
 // Fonction qui change le type de l'input entre 'text' et 'button' et met à jour son label et placeholder
 function toggleInput(input, label) {
     const isButton = input.type === 'button';
@@ -35,30 +35,35 @@ export function addDropdownEvents() {
         });
     }
 
-    // Ajoute un événement de clic pour chaque élément dropdown
-    dropdownToggles.forEach(({ selector, label }, index) => {
-        const toggle = document.querySelector(selector);
-        const menu = dropdownMenus[index];
+// Ajoute un événement de clic pour chaque élément dropdown
+dropdownToggles.forEach(({ selector, label }, index) => {
+    const toggle = document.querySelector(selector);
+    const menu = dropdownMenus[index];
 
-        toggle.addEventListener('click', () => {
-            // Ferme les autres menus dropdown
-            closeOtherMenus(menu);
-            // Bascule la classe 'dropdown__menu--active' pour afficher/masquer le menu dropdown actuel
-            menu.classList.toggle('dropdown__menu--active');
-            // Change le label et le type de l'input correspondant à l'élément dropdown actuel
-            toggleInput(toggle, label);
+    toggle.addEventListener('click', () => {
+        // Ferme les autres menus dropdown
+        closeOtherMenus(menu);
+        // Bascule la classe 'dropdown__menu--active' pour afficher/masquer le menu dropdown actuel
+        menu.classList.toggle('dropdown__menu--active');
+        // Change le label et le type de l'input correspondant à l'élément dropdown actuel
+        toggleInput(toggle, label);
 
-            // Désactive la classe 'dropdown__toggle--active' pour tous les éléments dropdown
-            const allDropdownToggles = document.querySelectorAll('.dropdown__toggle');
-            allDropdownToggles.forEach(toggleElement => {
-                if (toggleElement !== toggle) {
-                    toggleElement.classList.remove('dropdown__toggle--active');
-                }
-            });
-            // Active la classe 'dropdown__toggle--active' pour l'élément dropdown actuel
-            toggle.classList.toggle('dropdown__toggle--active');
+        // Ajoute le focus à l'input lorsqu'il est de type "text"
+        if (toggle.type === 'text') {
+            toggle.focus();
+        }
+
+        // Désactive la classe 'dropdown__toggle--active' pour tous les éléments dropdown
+        const allDropdownToggles = document.querySelectorAll('.dropdown__toggle');
+        allDropdownToggles.forEach(toggleElement => {
+            if (toggleElement !== toggle) {
+                toggleElement.classList.remove('dropdown__toggle--active');
+            }
         });
+        // Active la classe 'dropdown__toggle--active' pour l'élément dropdown actuel
+        toggle.classList.toggle('dropdown__toggle--active');
     });
+});
 }
 
 function reorderDropdown(dropdownMenus, dropdownToggles) {
@@ -130,7 +135,7 @@ function reorderDropdown(dropdownMenus, dropdownToggles) {
     });
 }
 
-function removeListItemAndCheckParent(listItem) {
+export function removeListItemAndCheckParent(listItem) {
     const parentList = listItem.parentElement;
     listItem.remove();
 
@@ -155,6 +160,14 @@ function addClickEventToItems(itemSelector, criteriaType) {
 }
 
 export function addClickEventToDropdownItem() {
+    const ingredientMenu = document.querySelector('.dropdown__menu--ingredients');
+    const applianceMenu = document.querySelector('.dropdown__menu--appliances');
+    const ustensilMenu = document.querySelector('.dropdown__menu--ustensils');
+  
+    addClickEventToDropdownItemsOfType(ingredientMenu, 'ingredient');
+    addClickEventToDropdownItemsOfType(applianceMenu, 'appliance');
+    addClickEventToDropdownItemsOfType(ustensilMenu, 'ustensil');
+
     addClickEventToItems('.dropdown__menu--ingredients .dropdown__menu-item', 'ingredient');
     addClickEventToItems('.dropdown__menu--appliances .dropdown__menu-item', 'appliance');
     addClickEventToItems('.dropdown__menu--ustensils .dropdown__menu-item', 'ustensil');

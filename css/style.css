@@ -146,7 +146,7 @@ body {
 }
 
 .recipe-card {
-  max-width: 22.5rem;
+  max-width: 24.375rem;
   height: 22.75rem;
   background-color: #E7E7E7;
   border-radius: 0.3125rem;
@@ -199,6 +199,14 @@ body {
   -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.dropdown-container {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 5rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .dropdown {
@@ -279,6 +287,22 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+@media screen and (max-width: 44.4375rem) {
+  .dropdown-container {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 5rem;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+  .dropdown__toggle {
+    width: 100%;
+  }
+  .dropdown__menu {
+    width: 100%;
+  }
+}
 .criteria-container {
   display: flex;
   flex-direction: column;
@@ -331,18 +355,13 @@ body {
   padding: 0 2%;
 }
 
-.dropdown-container {
-  display: flex;
-  gap: 1.25rem;
-  margin-bottom: 5rem;
-  justify-content: flex-start;
-}
-
 .recipes-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+  justify-items: center;
+  column-gap: 2%;
+  row-gap: 1.25rem;
+  max-width: 77.5rem;
 }
 
 /*# sourceMappingURL=style.css.map */

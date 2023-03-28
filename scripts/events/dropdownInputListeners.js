@@ -27,7 +27,7 @@ export function onDropdownInputChange(event, type, menu) {
     // Si la longueur de la saisie est inférieure à 3, rétablir les listes déroulantes initiales
     generateDropdownLists(recipeData); // Passez les données des recettes en argument ici
     // Ajoutez cette ligne pour ajouter des écouteurs d'événements aux éléments filtrés
-    addClickEventToDropdownItemsOfType(menu, type);
+    addClickEventToDropdownItems(menu, type);
   }
 
 }
@@ -35,11 +35,11 @@ export function onDropdownInputChange(event, type, menu) {
 export function addDropdownEventListeners() {
   const ingredientToggle = document.querySelector('.dropdown__toggle--ingredients');
   const applianceToggle = document.querySelector('.dropdown__toggle--appliances');
-  const utensilToggle = document.querySelector('.dropdown__toggle--ustensils');
+  const ustensilToggle = document.querySelector('.dropdown__toggle--ustensils');
 
   const ingredientMenu = document.querySelector('.dropdown__menu--ingredients');
   const applianceMenu = document.querySelector('.dropdown__menu--appliances');
-  const utensilMenu = document.querySelector('.dropdown__menu--ustensils');
+  const ustensilMenu = document.querySelector('.dropdown__menu--ustensils');
 
   ingredientToggle.addEventListener('input', (event) => {
     onDropdownInputChange(event, 'ingredient', ingredientMenu);
@@ -49,12 +49,12 @@ export function addDropdownEventListeners() {
     onDropdownInputChange(event, 'appliance', applianceMenu);
   });
 
-  utensilToggle.addEventListener('input', (event) => {
-    onDropdownInputChange(event, 'utensil', utensilMenu);
+  ustensilToggle.addEventListener('input', (event) => {
+    onDropdownInputChange(event, 'ustensil', ustensilMenu);
   });
 }
 
-export function addClickEventToDropdownItemsOfType(menu, criteriaType) {
+export function addClickEventToDropdownItems(menu, criteriaType) {
   const items = menu.querySelectorAll('.dropdown__menu-item');
   items.forEach(item => {
     item.addEventListener('click', () => {

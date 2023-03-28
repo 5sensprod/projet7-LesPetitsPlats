@@ -1,5 +1,5 @@
-import { generateCriteriaList } from './recipe-ui.js';
-import { addClickEventToDropdownItemsOfType} from '../events/dropdownInputListeners.js';
+// import { generateCriteriaList } from './recipe-ui.js';
+import { addClickEventToDropdownItems} from '../events/dropdownInputListeners.js';
 // Fonction qui change le type de l'input entre 'text' et 'button' et met à jour son label et placeholder
 function toggleInput(input, label) {
     const isButton = input.type === 'button';
@@ -144,31 +144,13 @@ export function removeListItemAndCheckParent(listItem) {
         parentList.remove();
     }
 }
-function addClickEventToItems(itemSelector, criteriaType) {
-    const items = document.querySelectorAll(itemSelector);
-    items.forEach(item => {
-        item.addEventListener('click', () => {
-            const listItem = generateCriteriaList(criteriaType, item.textContent);
-            if (listItem !== null) {
-                const closeIcon = listItem.querySelector('.search-criteria__close-icon');
-                closeIcon.addEventListener('click', () => {
-                    removeListItemAndCheckParent(listItem);
-                });
-            }
-        });
-    });
-}
 
 export function addClickEventToDropdownItem() {
     const ingredientMenu = document.querySelector('.dropdown__menu--ingredients');
     const applianceMenu = document.querySelector('.dropdown__menu--appliances');
     const ustensilMenu = document.querySelector('.dropdown__menu--ustensils');
   
-    addClickEventToDropdownItemsOfType(ingredientMenu, 'ingredient');
-    addClickEventToDropdownItemsOfType(applianceMenu, 'appliance');
-    addClickEventToDropdownItemsOfType(ustensilMenu, 'ustensil');
-
-    addClickEventToItems('.dropdown__menu--ingredients .dropdown__menu-item', 'ingredient');
-    addClickEventToItems('.dropdown__menu--appliances .dropdown__menu-item', 'appliance');
-    addClickEventToItems('.dropdown__menu--ustensils .dropdown__menu-item', 'ustensil');
+    addClickEventToDropdownItems(ingredientMenu, 'ingredient');
+    addClickEventToDropdownItems(applianceMenu, 'appliance');
+    addClickEventToDropdownItems(ustensilMenu, 'ustensil');
 }

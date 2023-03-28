@@ -6,8 +6,5 @@
   },
   "scripts": {
     "lint": "eslint ."
-  },
-  "dependencies": {
-    "bootstrap": "^5.2.3"
   }
 }

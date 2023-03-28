@@ -1,5 +1,5 @@
 // Import des mixins customisées
-@import 'custom-mixins';
+@import 'mixins';
 
 h1 {
     @include titre($h1-font-size, $h1-line-height, $h1-color, $h1-font-family, 700);

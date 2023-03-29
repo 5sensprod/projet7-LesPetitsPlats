@@ -2,9 +2,9 @@ import { generateDropdownLists, generateCriteriaList } from '../utils/recipe-ui.
 // Ajouter l'importation de getRecipeData
 import { getRecipeData } from '../data-source/dataShared.js';
 import { normalizeString } from '../utils/stringUtils.js';
-import { removeListItemAndCheckParent } from '../utils/dropdown-events.js';
+// import { removeListItemAndCheckParent } from '../utils/dropdown-events.js';
 
-export function onDropdownInputChange(event, type, menu) {
+function onDropdownInputChange(event, type, menu) {
   const input = event.target.value;
   const normalizedInput = normalizeString(input); // Ajoutez cette ligne
 
@@ -54,7 +54,8 @@ export function addDropdownEventListeners() {
   });
 }
 
-export function addClickEventToDropdownItems(menu, criteriaType) {
+
+function addClickEventToDropdownItems(menu, criteriaType) {
   const items = menu.querySelectorAll('.dropdown__menu-item');
   items.forEach(item => {
     item.addEventListener('click', () => {
@@ -67,4 +68,24 @@ export function addClickEventToDropdownItems(menu, criteriaType) {
       }
     });
   });
+}
+
+export function addClickEventToDropdownItem() {
+  const ingredientMenu = document.querySelector('.dropdown__menu--ingredients');
+  const applianceMenu = document.querySelector('.dropdown__menu--appliances');
+  const ustensilMenu = document.querySelector('.dropdown__menu--ustensils');
+
+  addClickEventToDropdownItems(ingredientMenu, 'ingredient');
+  addClickEventToDropdownItems(applianceMenu, 'appliance');
+  addClickEventToDropdownItems(ustensilMenu, 'ustensil');
+}
+
+function removeListItemAndCheckParent(listItem) {
+  const parentList = listItem.parentElement;
+  listItem.remove();
+
+  // Vérifie si le parent 'ul' est vide après la suppression du 'listItem'
+  if (parentList.childElementCount === 0) {
+    parentList.remove();
+  }
 }

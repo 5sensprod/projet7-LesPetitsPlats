@@ -1,5 +1,3 @@
-// import { generateCriteriaList } from './recipe-ui.js';
-import { addClickEventToDropdownItems} from '../events/dropdownInputListeners.js';
 // Fonction qui change le type de l'input entre 'text' et 'button' et met à jour son label et placeholder
 function toggleInput(input, label) {
     const isButton = input.type === 'button';
@@ -133,24 +131,4 @@ function reorderDropdown(dropdownMenus, dropdownToggles) {
             resetDropdownPositions();
         }
     });
-}
-
-export function removeListItemAndCheckParent(listItem) {
-    const parentList = listItem.parentElement;
-    listItem.remove();
-
-    // Vérifie si le parent 'ul' est vide après la suppression du 'listItem'
-    if (parentList.childElementCount === 0) {
-        parentList.remove();
-    }
-}
-
-export function addClickEventToDropdownItem() {
-    const ingredientMenu = document.querySelector('.dropdown__menu--ingredients');
-    const applianceMenu = document.querySelector('.dropdown__menu--appliances');
-    const ustensilMenu = document.querySelector('.dropdown__menu--ustensils');
-  
-    addClickEventToDropdownItems(ingredientMenu, 'ingredient');
-    addClickEventToDropdownItems(applianceMenu, 'appliance');
-    addClickEventToDropdownItems(ustensilMenu, 'ustensil');
 }

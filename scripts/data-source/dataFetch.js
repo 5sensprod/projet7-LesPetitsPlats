@@ -1,4 +1,4 @@
-import { setRecipeData } from './dataShared.js';
+import { setRecipeData } from './sharedData.js';
 
 export async function fetchData() {
   try {

@@ -1,23 +1,25 @@
-import { generateRecipeCards, generateDropdowns, generateDropdownLists } from './utils/recipe-ui.js';
-import { addDropdownEvents } from './utils/dropdown-events.js';
-import { getRecipeData, printRecipeData } from './data-source/dataShared.js';
 import { fetchData } from './data-source/dataFetch.js';
-import { addDropdownEventListeners, addClickEventToDropdownItem } from './events/dropdownInputListeners.js';
+import { getRecipeData } from './data-source/sharedData.js';
+
+import { generateRecipeCards, generateListDropdowns } from './utils/generator.js';
+
+import { addDropdownItemClickListeners } from './handlers/dropdownItemListeners.js';
+import { addDropdownEvents } from "./handlers/dropdownInteractions.js";
+
+import { updateRecipeDisplay } from "./search/criteriaSearch.js";
 
 async function initialize() {
     await fetchData();
-    const recipeData = getRecipeData();
-    console.log(recipeData);
+    const data = getRecipeData();
 
-    generateDropdowns();
-    generateDropdownLists(recipeData);
-    generateRecipeCards(recipeData);
+    generateRecipeCards(data);
+    generateListDropdowns(data);
+
+    addDropdownItemClickListeners();
     addDropdownEvents();
-    addClickEventToDropdownItem();
 
-    addDropdownEventListeners();
-    // Affiche les données dans la console
-    printRecipeData();
+    updateRecipeDisplay();
+
 }
 
 initialize();

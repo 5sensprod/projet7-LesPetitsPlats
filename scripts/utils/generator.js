@@ -9,6 +9,10 @@ export function generateRecipeCards(data) {
     data.forEach(recipe => {
         // Création des cartes de recettes
         const recipeCard = createRecipeCard(recipe);
+        
+        // Ajout de l'ID de la recette à l'élément "recipe-card"
+        recipeCard.setAttribute('data-recipe-id', recipe.id);
+        
         recipesContainer.appendChild(recipeCard);
     });
 }

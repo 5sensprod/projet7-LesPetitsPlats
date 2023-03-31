@@ -192,6 +192,7 @@ body {
   -webkit-line-clamp: 8;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  padding-right: 5px;
 }
 .recipe-card__description-container {
   width: 50%;

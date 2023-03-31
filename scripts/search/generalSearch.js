@@ -1,43 +1,57 @@
 import { normalizeString } from '../utils/stringUtils.js';
+import { updateDropdownLists } from '../handlers/dropdownUpdates.js';
+import { getRecipeDataById } from '../data-source/sharedData.js';
 
-// Fonction principale de recherche de recettes
+// La fonction searchRecipes utilise une approche basée sur les boucles natives pour traiter les recettes
 export function searchRecipes() {
-  // Sélectionne toutes les cartes de recettes
   const recipes = document.querySelectorAll('.recipe-card');
-  // Sélectionne le champ de saisie de la recherche
   const searchInput = document.getElementById('search-input');
 
-  // Ajoute un écouteur d'événement pour détecter les modifications de saisie de recherche
   searchInput.addEventListener('input', () => {
-    // Normalise la chaîne de caractères de recherche
     const query = normalizeString(searchInput.value.trim());
 
-    // Vérifie si la chaîne de recherche est suffisamment longue (au moins 3 caractères)
     if (query.length >= 3) {
-      // Utilise une boucle native "for" pour parcourir toutes les recettes
+      const filteredRecipesData = [];
+
+      // Utilisation d'une boucle native 'for' pour parcourir et filtrer les recettes
       for (let i = 0; i < recipes.length; i++) {
         const recipe = recipes[i];
         const title = normalizeString(recipe.querySelector('.recipe-card__title').textContent);
         const ingredients = normalizeString(recipe.querySelector('.recipe-card__ingredients').textContent);
         const description = normalizeString(recipe.querySelector('.recipe-card__description').textContent);
 
-        // Vérifie si la recette correspond aux critères de recherche
         const isMatch = title.includes(query) || ingredients.includes(query) || description.includes(query);
 
-        // Met à jour l'affichage de la recette en fonction de la correspondance
         if (isMatch) {
           recipe.style.display = '';
+          const recipeId = parseInt(recipe.getAttribute('data-recipe-id'));
+          const recipeData = getRecipeDataById(recipeId);
+          filteredRecipesData.push(recipeData);
         } else {
           recipe.style.display = 'none';
         }
       }
+
+      updateDropdownLists(filteredRecipesData);
+
     } else {
-      // Si la recherche est vide ou trop courte, affiche toutes les recettes
-      // Utilise une boucle native "for" pour parcourir toutes les recettes
+      // Utilisation d'une boucle native 'for' pour réinitialiser l'affichage des recettes
       for (let i = 0; i < recipes.length; i++) {
         const recipe = recipes[i];
         recipe.style.display = '';
       }
+
+      const allRecipeData = [];
+
+      // Utilisation d'une boucle native 'for' pour récupérer les données de toutes les recettes
+      for (let i = 0; i < recipes.length; i++) {
+        const recipe = recipes[i];
+        const recipeId = parseInt(recipe.getAttribute('data-recipe-id'));
+        const recipeData = getRecipeDataById(recipeId);
+        allRecipeData.push(recipeData);
+      }
+
+      updateDropdownLists(allRecipeData);
     }
   });
 }

@@ -37,10 +37,10 @@ export function createRecipeCard(recipe) {
   const servingsIngredientsContainer = document.createElement("div");
   servingsIngredientsContainer.classList.add("recipe-card__servings-ingredients-container");
 
-  const servings = document.createElement("p");
-  servings.classList.add("recipe-card__servings");
-  servings.textContent = "Pour " + recipe.servings + " personnes";
-  servingsIngredientsContainer.appendChild(servings);
+  // const servings = document.createElement("p");
+  // servings.classList.add("recipe-card__servings");
+  // servings.textContent = "Pour " + recipe.servings + " personnes";
+  // servingsIngredientsContainer.appendChild(servings);
 
   const ingredients = document.createElement("ul");
   ingredients.classList.add("recipe-card__ingredients");

@@ -2,7 +2,7 @@ import { normalizeString } from '../utils/stringUtils.js';
 import { getRecipeData } from '../data-source/sharedData.js';
 import { updateDropdownLists, updateAvailableCriteria } from '../handlers/dropdownUpdates.js';
 
-export function updateRecipeDisplay(filterDropdowns = false) {
+export function updateRecipeDisplay(filterDropdowns = false, filteredRecipeCards = null) {
   const searchCriteria = document.querySelectorAll('.search-criteria__item');
   const recipes = document.querySelectorAll('.recipe-card');
   const recipeData = getRecipeData();
@@ -11,31 +11,34 @@ export function updateRecipeDisplay(filterDropdowns = false) {
   recipes.forEach((recipe, index) => {
     let shouldDisplay = true;
 
-    searchCriteria.forEach(criteria => {
-      const listType = criteria.classList.contains('search-criteria__item--ingredient') ? 'ingredient'
-        : criteria.classList.contains('search-criteria__item--appliance') ? 'appliance'
-          : 'ustensil';
+    if (filteredRecipeCards !== null) {
+      shouldDisplay = filteredRecipeCards.includes(recipe);
+    } else {
+      const currentRecipeData = recipeData[index];
+      const ingredients = currentRecipeData.ingredients.map(ingredient => normalizeString(ingredient.ingredient));
+      const appliance = normalizeString(currentRecipeData.appliance);
+      const ustensils = currentRecipeData.ustensils.map(ustensil => normalizeString(ustensil));
 
-      const text = criteria.textContent.trim();
-      const normalizedText = normalizeString(text);
+      for (const criteria of searchCriteria) {
+        const listType = criteria.classList.contains('search-criteria__item--ingredient') ? 'ingredient'
+          : criteria.classList.contains('search-criteria__item--appliance') ? 'appliance'
+            : 'ustensil';
 
-      if (listType === 'ingredient') {
-        const ingredients = recipeData[index].ingredients.map(ingredient => normalizeString(ingredient.ingredient));
-        if (!ingredients.includes(normalizedText)) {
+        const text = criteria.textContent.trim();
+        const normalizedText = normalizeString(text);
+
+        if (listType === 'ingredient' && !ingredients.includes(normalizedText)) {
           shouldDisplay = false;
-        }
-      } else if (listType === 'appliance') {
-        const appliance = normalizeString(recipeData[index].appliance);
-        if (appliance !== normalizedText) {
+          break;
+        } else if (listType === 'appliance' && appliance !== normalizedText) {
           shouldDisplay = false;
-        }
-      } else {
-        const ustensils = recipeData[index].ustensils.map(ustensil => normalizeString(ustensil));
-        if (!ustensils.includes(normalizedText)) {
+          break;
+        } else if (listType === 'ustensil' && !ustensils.includes(normalizedText)) {
           shouldDisplay = false;
+          break;
         }
       }
-    });
+    }
 
     recipe.style.display = shouldDisplay ? '' : 'none';
     if (shouldDisplay) {
@@ -43,13 +46,10 @@ export function updateRecipeDisplay(filterDropdowns = false) {
     }
   });
 
-  // Appeler updateDropdownLists avec le tableau filteredRecipes seulement si filterDropdowns est true
   if (filterDropdowns) {
-    // Appeler updateDropdownLists avec le tableau filteredRecipes
     updateDropdownLists(filteredRecipes);
   }
 
-  // Appeler updateAvailableCriteria avec le tableau filteredRecipes
   updateAvailableCriteria(filteredRecipes.map(recipe => {
     return {
       id: parseInt(recipe.id),

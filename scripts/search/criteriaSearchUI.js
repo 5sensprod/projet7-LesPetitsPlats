@@ -1,5 +1,6 @@
 import { createSearchCriteriaList } from '../factories/criteriaListFactory.js';
 import { updateRecipeDisplay } from './criteriaSearch.js';
+import { filterRecipes } from './generalSearch.js';
 
 export function displayInSearchCriteria(text, listType) {
     const searchCriteriaList = createSearchCriteriaList(listType);
@@ -28,13 +29,13 @@ export function displayInSearchCriteria(text, listType) {
         if (searchCriteriaList.querySelectorAll('.search-criteria__item').length === 0) {
             searchCriteriaList.remove();
         }
-        // Ajoutez cet appel ici pour mettre à jour l'affichage des recettes après avoir supprimé un critère
+        // Mettre à jour l'affichage des recettes après avoir supprimé un critère
         updateRecipeDisplay();
     });
     searchCriteriaItem.appendChild(closeButton);
 
-    // Met à jour l'affichage des recettes après avoir ajouté un critère
-    updateRecipeDisplay();
+    // Mettre à jour l'affichage des recettes après avoir ajouté un critère
+    filterRecipes();
 }
 
 export function attachClickListenerToDropdownItem(listItem, listType) {

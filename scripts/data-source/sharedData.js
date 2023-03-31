@@ -26,3 +26,10 @@ export function setRecipeData(data) {
 export function getRecipeData() {
   return recipeData;
 }
+
+// Fonction pour récupérer les données de recette par ID
+export function getRecipeDataById(recipeId) {
+  // Trouver l'objet de recette dans le tableau de recettes en utilisant l'ID
+  const recipeDataItem = recipeData.find(recipe => recipe.id === recipeId);
+  return recipeDataItem;
+}

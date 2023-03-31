@@ -6,7 +6,7 @@ import { addDropdownEvents } from "./handlers/dropdownInteractions.js";
 import { addDropdownItemClickListeners } from './handlers/dropdownItemListeners.js';
 
 import { updateRecipeDisplay } from "./search/criteriaSearch.js";
-import { searchRecipes } from "./search/generalSearch.js";
+import { filterRecipes } from "./search/generalSearch.js";
 
 async function initialize() {
     await fetchData();
@@ -18,8 +18,17 @@ async function initialize() {
     addDropdownEvents();
 
     updateRecipeDisplay();
-    searchRecipes();
-
+    filterRecipes();
 }
 
-initialize();
+function initializeEventListeners() {
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', () => {
+        filterRecipes();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initialize();
+    initializeEventListeners();
+});

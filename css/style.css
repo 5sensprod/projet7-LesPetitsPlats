@@ -354,6 +354,7 @@ body {
   margin: 0 auto;
   max-width: 77.5rem;
   padding: 0 2%;
+  margin-bottom: 3.125rem;
 }
 
 .recipes-container {
@@ -363,6 +364,22 @@ body {
   column-gap: 2%;
   row-gap: 1.25rem;
   max-width: 77.5rem;
+}
+
+.no-found-message {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  color: black;
+  opacity: 0.45;
+}
+
+.no-dropdown-items-found-message {
+  display: block !important;
+  width: 500px;
+  opacity: 0.65;
 }
 
 /*# sourceMappingURL=style.css.map */

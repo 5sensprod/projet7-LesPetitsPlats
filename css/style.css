@@ -382,4 +382,9 @@ body {
   opacity: 0.65;
 }
 
+.only-no-dropdown-items-found-message {
+  width: 500px;
+  opacity: 0.65;
+}
+
 /*# sourceMappingURL=style.css.map */

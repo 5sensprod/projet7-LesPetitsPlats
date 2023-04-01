@@ -1,5 +1,6 @@
 import { normalizeString, singularize, compareStrings, capitalizeFirstWord } from './stringUtils.js';
 import { attachClickListenerToDropdownItem } from "../search/criteriaSearchUI.js";
+import { generateOnlyNoDropdownItemsFoundMessage } from "./generator.js";
 
 export function addUniqueListItem(list, item, type) {
   // Normaliser l'élément et le mettre au singulier
@@ -33,15 +34,33 @@ export function filterDropdownItems(inputElement, listElement) {
   inputElement.addEventListener('input', () => {
     const filter = inputElement.value.trim().toLowerCase();
     const items = listElement.querySelectorAll('.dropdown__menu-item');
+    let noItemsFound = true;
+
     items.forEach(item => {
       const itemName = item.getAttribute('data-name').toLowerCase();
       const originalItemName = item.getAttribute('data-original-name').toLowerCase();
 
       if (compareStrings(itemName, filter) || compareStrings(originalItemName, filter)) {
         item.style.display = '';
+        noItemsFound = false;
       } else {
         item.style.display = 'none';
       }
     });
+
+    // Gérer l'affichage du message "Aucun élément trouvé"
+    const noItemsFoundMessage = listElement.querySelector('.only-no-dropdown-items-found-message');
+    if (noItemsFound) {
+      if (!noItemsFoundMessage) {
+        const itemType = listElement.getAttribute('data-item-type');
+        generateOnlyNoDropdownItemsFoundMessage(itemType, `#${listElement.id}`);
+      } else {
+        noItemsFoundMessage.style.display = 'block';
+      }
+    } else {
+      if (noItemsFoundMessage) {
+        noItemsFoundMessage.style.display = 'none';
+      }
+    }
   });
 }

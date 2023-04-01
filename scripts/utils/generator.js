@@ -1,5 +1,5 @@
 import { createRecipeCard } from "../factories/recipeCardFactory.js";
-import { createNoFoundMessageFactory, createNoDropdownItemsFoundMessageFactory } from "../factories/messageFactory.js";
+import { createNoFoundMessageFactory, createNoDropdownItemsFoundMessageFactory, createOnlyNoDropdownItemsFoundMessageFactory } from "../factories/messageFactory.js";
 import { getRandomItem } from "./randomItems.js";
 
 import { addUniqueListItem } from "./dropdownListUtils.js";
@@ -63,3 +63,11 @@ export function generateNoDropdownItemsFoundMessage(itemType, dropdownSelector) 
     dropdown.appendChild(noItemsFoundMessage);
     noItemsFoundMessage.style.display = 'block';
 }
+
+export function generateOnlyNoDropdownItemsFoundMessage(itemType, dropdownSelector) {
+    const randomItem = getRandomItem(itemType);
+    const dropdown = document.querySelector(dropdownSelector);
+    const noItemsFoundMessage = createOnlyNoDropdownItemsFoundMessageFactory(itemType, randomItem);
+    dropdown.appendChild(noItemsFoundMessage);
+    noItemsFoundMessage.style.display = 'block';
+  }

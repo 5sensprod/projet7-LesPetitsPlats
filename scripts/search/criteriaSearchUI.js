@@ -31,6 +31,8 @@ export function displayInSearchCriteria(text, listType) {
         }
         // Mettre à jour l'affichage des recettes après avoir supprimé un critère
         updateRecipeDisplay();
+        // Mettre à jour les recettes en fonction des critères restants et de la saisie de recherche
+        filterRecipes();
     });
     searchCriteriaItem.appendChild(closeButton);
 

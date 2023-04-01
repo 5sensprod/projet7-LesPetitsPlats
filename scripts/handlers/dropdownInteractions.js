@@ -1,5 +1,49 @@
 import { filterDropdownItems } from '../utils/dropdownListUtils.js';
 
+const dropdownToggles = [
+  { selector: '.dropdown__toggle--ingredients', label: 'Ingrédients' },
+  { selector: '.dropdown__toggle--appliances', label: 'Appareils' },
+  { selector: '.dropdown__toggle--ustensils', label: 'Ustensiles' },
+];
+
+export function toggleInputsDisabled(disabled) {
+  const dropdowns = document.querySelectorAll('.dropdown');
+  const dropdownInputs = document.querySelectorAll('.dropdown__toggle');
+  
+  dropdownInputs.forEach(input => {
+    if (disabled) {
+      input.setAttribute('disabled', '');
+    } else {
+      input.removeAttribute('disabled');
+    }
+  });
+
+  if (disabled) {
+    dropdowns.forEach(dropdown => {
+      dropdown.addEventListener('click', closeOpenedDropdown);
+    });
+  } else {
+    dropdowns.forEach(dropdown => {
+      dropdown.removeEventListener('click', closeOpenedDropdown);
+    });
+  }
+}
+
+export function closeOpenedDropdown(event) {
+  const dropdownMenu = event.currentTarget.querySelector('.dropdown__menu');
+  const dropdownToggle = event.currentTarget.querySelector('.dropdown__toggle');
+
+  if (dropdownMenu.classList.contains('dropdown__menu--active')) {
+    dropdownMenu.classList.remove('dropdown__menu--active');
+    dropdownToggle.classList.remove('dropdown__toggle--active');
+    
+    // Revenir sur type="button"
+    const toggleIndex = Array.from(document.querySelectorAll('.dropdown__toggle')).indexOf(dropdownToggle);
+    const label = dropdownToggles[toggleIndex].label;
+    toggleInput(dropdownToggle, label);
+  }
+}
+
 // Fonction qui change le type de l'input entre 'text' et 'button' et met à jour son label et placeholder
 function toggleInput(input, label) {
   const isButton = input.type === 'button';
@@ -7,7 +51,6 @@ function toggleInput(input, label) {
   input.value = isButton ? '' : label;
   input.placeholder = isButton ? `Rechercher par ${label}` : '';
 }
-
 export function addDropdownEvents() {
   // Définit les éléments dropdown à activer, ainsi que leurs labels
   const dropdownToggles = [

@@ -1,5 +1,5 @@
 import { createRecipeCard } from "../factories/recipeCardFactory.js";
-import { createNoFoundMessageFactory, createNoDropdownItemsFoundMessageFactory, createOnlyNoDropdownItemsFoundMessageFactory } from "../factories/messageFactory.js";
+import { createNoFoundMessageFactory, createOnlyNoDropdownItemsFoundMessageFactory } from "../factories/messageFactory.js";
 import { getRandomItem } from "./randomItems.js";
 
 import { addUniqueListItem } from "./dropdownListUtils.js";
@@ -57,17 +57,18 @@ export function generateNoRecipesFoundMessage() {
     }
 }
 
-export function generateNoDropdownItemsFoundMessage(itemType, dropdownSelector) {
-    const dropdown = document.querySelector(dropdownSelector);
-    const noItemsFoundMessage = createNoDropdownItemsFoundMessageFactory(itemType);
-    dropdown.appendChild(noItemsFoundMessage);
-    noItemsFoundMessage.style.display = 'block';
-}
-
 export function generateOnlyNoDropdownItemsFoundMessage(itemType, dropdownSelector) {
-    const randomItem = getRandomItem(itemType);
     const dropdown = document.querySelector(dropdownSelector);
-    const noItemsFoundMessage = createOnlyNoDropdownItemsFoundMessageFactory(itemType, randomItem);
-    dropdown.appendChild(noItemsFoundMessage);
-    noItemsFoundMessage.style.display = 'block';
+    const noFoundMessage = dropdown.querySelector('.only-no-dropdown-items-found-message');
+  
+    const randomItem = getRandomItem(itemType); // Appeler getRandomItem ici
+  
+    if (!noFoundMessage) {
+      const newNoItemsFoundMessage = createOnlyNoDropdownItemsFoundMessageFactory(itemType, randomItem);
+      dropdown.appendChild(newNoItemsFoundMessage);
+      newNoItemsFoundMessage.style.display = 'block';
+    } else {
+      noFoundMessage.textContent = `Aucun ${itemType} ne correspond à votre recherche ! Essayez ${randomItem}`;
+      noFoundMessage.style.display = 'block';
+    }
   }

@@ -49,15 +49,12 @@ export function filterDropdownItems(inputElement, listElement) {
     });
 
     // Gérer l'affichage du message "Aucun élément trouvé"
-    const noItemsFoundMessage = listElement.querySelector('.only-no-dropdown-items-found-message');
+    const itemType = listElement.getAttribute('data-item-type'); // Définir itemType ici
+
     if (noItemsFound) {
-      if (!noItemsFoundMessage) {
-        const itemType = listElement.getAttribute('data-item-type');
-        generateOnlyNoDropdownItemsFoundMessage(itemType, `#${listElement.id}`);
-      } else {
-        noItemsFoundMessage.style.display = 'block';
-      }
+      generateOnlyNoDropdownItemsFoundMessage(itemType, `#${listElement.id}`);
     } else {
+      const noItemsFoundMessage = listElement.querySelector('.only-no-dropdown-items-found-message');
       if (noItemsFoundMessage) {
         noItemsFoundMessage.style.display = 'none';
       }

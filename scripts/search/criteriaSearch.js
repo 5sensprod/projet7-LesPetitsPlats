@@ -1,7 +1,8 @@
 import { normalizeString } from '../utils/stringUtils.js';
 import { getRecipeData } from '../data-source/sharedData.js';
 import { updateDropdownLists, updateAvailableCriteria } from '../handlers/dropdownUpdates.js';
-import { generateNoRecipesFoundMessage, generateNoDropdownItemsFoundMessage } from '../utils/generator.js';
+import { generateNoRecipesFoundMessage } from '../utils/generator.js';
+import { toggleInputsDisabled, closeOpenedDropdown  } from '../handlers/dropdownInteractions.js';
 
 const getListType = (criteria) => {
   if (criteria.classList.contains('search-criteria__item--ingredient')) return 'ingredient';
@@ -53,6 +54,15 @@ export function updateRecipeDisplay(filterDropdowns = false, filteredRecipeCards
 
   noFoundMessage && (noFoundMessage.style.display = noRecipesFound ? '' : 'none');
   noRecipesFound && generateNoRecipesFoundMessage();
+  if (noRecipesFound) {
+    const openedDropdowns = document.querySelectorAll('.dropdown');
+    openedDropdowns.forEach(dropdown => {
+      closeOpenedDropdown({ currentTarget: dropdown });
+    });
+  }
+
+  // Appel de toggleInputsDisabled pour désactiver les inputs si aucun élément ne correspond à la recherche
+  toggleInputsDisabled(noRecipesFound);
 
   filterDropdowns && updateDropdownLists(filteredRecipes);
 
@@ -64,25 +74,4 @@ export function updateRecipeDisplay(filterDropdowns = false, filteredRecipeCards
       ustensils: recipe.ustensils,
     };
   }));
-
-
-  // Supprimer les anciens messages
-  document.querySelectorAll('.no-dropdown-items-found-message').forEach(message => message.remove());
-
-  // Ajout des appels pour afficher le message si aucun élément ne correspond à la recherche
-  const ingredientsDropdown = document.querySelector('#sort-by-ingredients');
-  const appliancesDropdown = document.querySelector('#sort-by-appliances');
-  const ustensilsDropdown = document.querySelector('#sort-by-ustensils');
-
-  if (!ingredientsDropdown.querySelector('li:not(.no-dropdown-items-found-message)')) {
-    generateNoDropdownItemsFoundMessage('ingrédient', '#sort-by-ingredients');
-  }
-
-  if (!appliancesDropdown.querySelector('li:not(.no-dropdown-items-found-message)')) {
-    generateNoDropdownItemsFoundMessage('appareil', '#sort-by-appliances');
-  }
-
-  if (!ustensilsDropdown.querySelector('li:not(.no-dropdown-items-found-message)')) {
-    generateNoDropdownItemsFoundMessage('ustensile', '#sort-by-ustensils');
-  }
 }

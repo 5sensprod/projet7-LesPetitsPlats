@@ -376,12 +376,6 @@ body {
   opacity: 0.45;
 }
 
-.no-dropdown-items-found-message {
-  display: block !important;
-  width: 500px;
-  opacity: 0.65;
-}
-
 .only-no-dropdown-items-found-message {
   width: 500px;
   opacity: 0.65;

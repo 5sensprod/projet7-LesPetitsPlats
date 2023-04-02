@@ -242,6 +242,10 @@ body {
   width: 41.6875rem;
   border-radius: 0.3125rem 0.3125rem 0 0;
 }
+.dropdown__toggle--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .dropdown__label {
   position: absolute;
   right: 10px;

@@ -13,8 +13,10 @@ export function toggleInputsDisabled(disabled) {
   dropdownInputs.forEach(input => {
     if (disabled) {
       input.setAttribute('disabled', '');
+      input.classList.add('dropdown__toggle--disabled'); // Ajout de la classe
     } else {
       input.removeAttribute('disabled');
+      input.classList.remove('dropdown__toggle--disabled'); // Retrait de la classe
     }
   });
 

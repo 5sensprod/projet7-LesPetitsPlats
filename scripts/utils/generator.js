@@ -81,14 +81,11 @@ function createAndShowModal(recipeId) {
     modal.classList.add("modal");
     // Si la recette n'est pas trouvée, ne faites rien
     if (!recipe) return;
-    const modalContent = document.createElement("div");
-    modalContent.classList.add("modal-content");
 
     // Ajoutez le contenu de la modale en utilisant la fonction createRecipeModalContent
     const recipeModalContent = createRecipeModalContent(recipe);
-    modalContent.appendChild(recipeModalContent);
+    modal.appendChild(recipeModalContent);
 
-    modal.appendChild(modalContent);
     document.body.appendChild(modal);
 
     // Assombrir le reste de la page

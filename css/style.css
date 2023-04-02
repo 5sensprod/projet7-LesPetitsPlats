@@ -356,6 +356,7 @@ body {
   transform: translate(-50%, -50%);
   z-index: 1000;
   background-color: white;
+  border-radius: 0.3125rem;
 }
 
 .overlay {
@@ -366,6 +367,31 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 999;
+}
+
+.modal-content__image {
+  border-radius: 0.3125rem 0.3125rem 0 0;
+}
+.modal-content__container {
+  padding: 1.25rem;
+}
+.modal-content__title {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.1875rem;
+  color: black;
+  margin-bottom: 1.25rem;
+}
+.modal-content__time {
+  margin-bottom: 0.625rem;
+}
+.modal-content__servings-ingredients-container {
+  margin-bottom: 0.625rem;
+}
+.modal-content__servings {
+  margin-bottom: 0.625rem;
 }
 
 .header {

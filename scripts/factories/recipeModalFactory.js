@@ -13,7 +13,7 @@ export function createRecipeModalContent(recipe) {
   modalContent.appendChild(imgContainer);
 
   const contentContainer = document.createElement("div");
-  contentContainer.classList.add("modal-content-container");
+  contentContainer.classList.add("modal-content__container");
   modalContent.appendChild(contentContainer);
 
   const titleTimeContainer = document.createElement("div");

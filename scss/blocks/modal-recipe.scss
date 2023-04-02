@@ -1,4 +1,3 @@
-
 .modal {
     position: fixed;
     top: 50%;
@@ -6,9 +5,10 @@
     transform: translate(-50%, -50%);
     z-index: 1000;
     background-color: white;
-  }
-  
-  .overlay {
+    border-radius: rem(5);
+}
+
+.overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -16,4 +16,38 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 999;
-  }
+}
+
+.modal-content {
+
+    &__image {
+        border-radius: rem(5) rem(5) 0  0;
+    }
+    
+    &__container {
+        padding: rem(20);
+    }
+
+    &__title {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 400;
+        font-size: rem(24);
+        line-height: rem(19);
+        color: black;
+        margin-bottom: rem(20);
+    }
+
+    &__time {
+        margin-bottom: rem(10);
+    }
+
+    &__servings-ingredients-container {
+        margin-bottom: rem(10);
+    }
+
+    &__servings {
+        margin-bottom: rem(10);
+    }
+
+}

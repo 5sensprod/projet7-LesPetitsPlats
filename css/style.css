@@ -150,6 +150,11 @@ body {
   height: 22.75rem;
   background-color: #E7E7E7;
   border-radius: 0.3125rem;
+  transition: all 0.1s ease;
+}
+.recipe-card:hover {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
 }
 .recipe-card__image-container {
   height: 11.125rem;

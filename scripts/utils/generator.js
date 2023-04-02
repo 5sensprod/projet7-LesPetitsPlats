@@ -1,6 +1,6 @@
 import { createRecipeCard } from "../factories/recipeCardFactory.js";
 import { createNoFoundMessageFactory, createOnlyNoDropdownItemsFoundMessageFactory } from "../factories/messageFactory.js";
-import { getRandomItem } from "./randomItems.js";
+import { getRandomItem, translateItemType } from "./randomItems.js";
 
 import { addUniqueListItem } from "./dropdownListUtils.js";
 import { updateRecipeDisplay } from "../search/criteriaSearch.js";
@@ -71,13 +71,14 @@ export function generateOnlyNoDropdownItemsFoundMessage(itemType, dropdownSelect
     const noFoundMessage = dropdown.querySelector('.only-no-dropdown-items-found-message');
 
     const randomItem = getRandomItem(itemType); // Appeler getRandomItem ici
+    const translatedItemType = translateItemType(itemType);
 
     if (!noFoundMessage) {
-        const newNoItemsFoundMessage = createOnlyNoDropdownItemsFoundMessageFactory(itemType, randomItem);
+        const newNoItemsFoundMessage = createOnlyNoDropdownItemsFoundMessageFactory(translatedItemType, randomItem);
         dropdown.appendChild(newNoItemsFoundMessage);
         newNoItemsFoundMessage.style.display = 'block';
     } else {
-        noFoundMessage.textContent = `Aucun ${itemType} ne correspond à votre recherche ! Essayez ${randomItem}`;
+        noFoundMessage.textContent = `Aucun ${translatedItemType} ne correspond à votre recherche ! Essayez ${randomItem}`;
         noFoundMessage.style.display = 'block';
     }
 }

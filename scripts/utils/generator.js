@@ -40,13 +40,22 @@ export function generateListDropdowns(data) {
     updateRecipeDisplay(false);
 }
 
-export function generateNoRecipesFoundMessage() {
+export function generateNoRecipesFoundMessage(hasCriteria = false, criteriaCount = 0) {
     const recipesContainer = document.querySelector('.recipes-container');
     const noFoundMessage = document.getElementById('no-found-message');
 
     const randomRecipeTitle = getRandomItem('title');
     const randomIngredient = getRandomItem('ingredient');
-    const message = `Aucune recette trouvée, veuillez essayer "${randomRecipeTitle}" ou "${randomIngredient}" !`;
+
+    let message;
+
+    if (hasCriteria && criteriaCount > 1) {
+        message = `Aucune recette trouvée avec vos critères, veuillez essayer "${randomRecipeTitle}" ou "${randomIngredient}" ou retirez quelques critères !`;
+    } else if (hasCriteria && criteriaCount === 1) {
+        message = `Aucune recette trouvée avec votre critère, veuillez essayer "${randomRecipeTitle}" ou "${randomIngredient}" ou retirez le critère !`;
+    } else {
+        message = `Aucune recette trouvée, veuillez essayer "${randomRecipeTitle}" ou "${randomIngredient}" !`;
+    }
 
     if (!noFoundMessage) {
         const noRecipesFoundMessage = createNoFoundMessageFactory(message);
@@ -60,15 +69,15 @@ export function generateNoRecipesFoundMessage() {
 export function generateOnlyNoDropdownItemsFoundMessage(itemType, dropdownSelector) {
     const dropdown = document.querySelector(dropdownSelector);
     const noFoundMessage = dropdown.querySelector('.only-no-dropdown-items-found-message');
-  
+
     const randomItem = getRandomItem(itemType); // Appeler getRandomItem ici
-  
+
     if (!noFoundMessage) {
-      const newNoItemsFoundMessage = createOnlyNoDropdownItemsFoundMessageFactory(itemType, randomItem);
-      dropdown.appendChild(newNoItemsFoundMessage);
-      newNoItemsFoundMessage.style.display = 'block';
+        const newNoItemsFoundMessage = createOnlyNoDropdownItemsFoundMessageFactory(itemType, randomItem);
+        dropdown.appendChild(newNoItemsFoundMessage);
+        newNoItemsFoundMessage.style.display = 'block';
     } else {
-      noFoundMessage.textContent = `Aucun ${itemType} ne correspond à votre recherche ! Essayez ${randomItem}`;
-      noFoundMessage.style.display = 'block';
+        noFoundMessage.textContent = `Aucun ${itemType} ne correspond à votre recherche ! Essayez ${randomItem}`;
+        noFoundMessage.style.display = 'block';
     }
-  }
+}

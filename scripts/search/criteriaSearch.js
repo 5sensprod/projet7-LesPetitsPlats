@@ -2,7 +2,7 @@ import { normalizeString } from '../utils/stringUtils.js';
 import { getRecipeData } from '../data-source/sharedData.js';
 import { updateDropdownLists, updateAvailableCriteria } from '../handlers/dropdownUpdates.js';
 import { generateNoRecipesFoundMessage } from '../utils/generator.js';
-import { toggleInputsDisabled, closeOpenedDropdown  } from '../handlers/dropdownInteractions.js';
+import { toggleInputsDisabled, closeOpenedDropdown } from '../handlers/dropdownInteractions.js';
 
 const getListType = (criteria) => {
   if (criteria.classList.contains('search-criteria__item--ingredient')) return 'ingredient';
@@ -38,6 +38,7 @@ function shouldDisplayRecipe(recipe, index, searchCriteria, recipeData, filtered
 
 export function updateRecipeDisplay(filterDropdowns = false, filteredRecipeCards = null) {
   const searchCriteria = document.querySelectorAll('.search-criteria__item');
+  const criteriaCount = searchCriteria.length;
   const recipes = document.querySelectorAll('.recipe-card');
   const recipeData = getRecipeData();
   const filteredRecipes = [];
@@ -53,7 +54,8 @@ export function updateRecipeDisplay(filterDropdowns = false, filteredRecipeCards
   const noRecipesFound = filteredRecipeCards && filteredRecipeCards.length === 0;
 
   noFoundMessage && (noFoundMessage.style.display = noRecipesFound ? '' : 'none');
-  noRecipesFound && generateNoRecipesFoundMessage();
+  const hasCriteria = searchCriteria.length > 0;
+  noRecipesFound && generateNoRecipesFoundMessage(hasCriteria, criteriaCount);
   if (noRecipesFound) {
     const openedDropdowns = document.querySelectorAll('.dropdown');
     openedDropdowns.forEach(dropdown => {

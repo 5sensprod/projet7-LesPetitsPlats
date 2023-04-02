@@ -23,7 +23,7 @@ export function filterRecipes() {
     const normalizedQuery = normalizeString(query);
     const matchesSearchQuery = query.length < 3 || normalizeString(recipe.name).includes(normalizedQuery) || recipe.ingredients.some(ingredient => normalizeString(ingredient.ingredient).includes(normalizedQuery)) || normalizeString(recipe.description).includes(normalizedQuery);
     //console.log sur name
-    console.log(recipe.name);
+    // console.log(recipe.name);
     const matchesSearchCriteria = Array.from(searchCriteria).every(criteria => {
       const listType = criteria.classList.contains('search-criteria__item--ingredient') ? 'ingredient'
         : criteria.classList.contains('search-criteria__item--appliance') ? 'appliance'

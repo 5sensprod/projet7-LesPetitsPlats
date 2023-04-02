@@ -1,22 +1,12 @@
 import { createRecipeCard } from "../factories/recipeCardFactory.js";
 import { createNoFoundMessageFactory, createOnlyNoDropdownItemsFoundMessageFactory } from "../factories/messageFactory.js";
+import { createRecipeModalContent } from "../factories/recipeModalFactory.js";
 import { getRandomItem, translateItemType } from "./randomItems.js";
-
+import { getRecipeDataById } from '../data-source/sharedData.js';
 import { addUniqueListItem } from "./dropdownListUtils.js";
 import { updateRecipeDisplay } from "../search/criteriaSearch.js";
 
-export function generateRecipeCards(data) {
-    const recipesContainer = document.querySelector('.recipes-container');
-    data.forEach(recipe => {
-        // Création des cartes de recettes
-        const recipeCard = createRecipeCard(recipe);
 
-        // Ajout de l'ID de la recette à l'élément "recipe-card"
-        recipeCard.setAttribute('data-recipe-id', recipe.id);
-
-        recipesContainer.appendChild(recipeCard);
-    });
-}
 
 export function generateListDropdowns(data) {
     const ingredientsList = document.getElementById("sort-by-ingredients");
@@ -81,4 +71,53 @@ export function generateOnlyNoDropdownItemsFoundMessage(itemType, dropdownSelect
         noFoundMessage.textContent = `Aucun ${translatedItemType} ne correspond à votre recherche ! Essayez ${randomItem}`;
         noFoundMessage.style.display = 'block';
     }
+}
+
+function createAndShowModal(recipeId) {
+    // Trouver la recette correspondante en utilisant l'ID
+    const recipe = getRecipeDataById(parseInt(recipeId));
+
+    const modal = document.createElement("div");
+    modal.classList.add("modal");
+    // Si la recette n'est pas trouvée, ne faites rien
+    if (!recipe) return;
+    const modalContent = document.createElement("div");
+    modalContent.classList.add("modal-content");
+
+    // Ajoutez le contenu de la modale en utilisant la fonction createRecipeModalContent
+    const recipeModalContent = createRecipeModalContent(recipe);
+    modalContent.appendChild(recipeModalContent);
+
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+
+    // Assombrir le reste de la page
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+    document.body.appendChild(overlay);
+
+    // Fermer la modale lorsqu'on clique sur l'arrière-plan assombri
+    overlay.addEventListener("click", () => {
+        modal.remove();
+        overlay.remove();
+    });
+}
+
+
+export function generateRecipeCards(data) {
+    const recipesContainer = document.querySelector(".recipes-container");
+    data.forEach((recipe) => {
+        // Création des cartes de recettes
+        const recipeCard = createRecipeCard(recipe);
+
+        // Ajout de l'ID de la recette à l'élément "recipe-card"
+        recipeCard.setAttribute("data-recipe-id", recipe.id);
+
+        // Ajout d'un écouteur d'événements pour afficher la modale lorsqu'on clique sur la carte de recette
+        recipeCard.addEventListener("click", () => {
+            createAndShowModal(recipe.id);
+        });
+
+        recipesContainer.appendChild(recipeCard);
+    });
 }

@@ -49,10 +49,17 @@ export function closeOpenedDropdown(event) {
 // Fonction qui change le type de l'input entre 'text' et 'button' et met à jour son label et placeholder
 function toggleInput(input, label) {
   const isButton = input.type === 'button';
-  input.type = isButton ? 'text' : 'button';
-  input.value = isButton ? '' : label;
-  input.placeholder = isButton ? `Rechercher par ${label}` : '';
+  if (isButton) {
+    input.type = 'text';
+    input.value = input.getAttribute('data-stored-value') || '';
+    input.placeholder = `Rechercher par ${label}`;
+  } else {
+    input.setAttribute('data-stored-value', input.value);
+    input.type = 'button';
+    input.value = label;
+  }
 }
+
 export function addDropdownEvents() {
   // Définit les éléments dropdown à activer, ainsi que leurs labels
   const dropdownToggles = [

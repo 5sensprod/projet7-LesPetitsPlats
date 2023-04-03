@@ -14,6 +14,7 @@ function getRecipeCardElementsFromData(filteredRecipesData) {
 
 // Filtre les recettes en utilisant les boucles natives
 export function filterRecipes() {
+  const startTime = performance.now();
   const searchInput = document.getElementById('search-input');
   const query = normalizeString(searchInput.value.trim());
   const searchCriteria = document.querySelectorAll('.search-criteria__item');
@@ -61,4 +62,7 @@ export function filterRecipes() {
   const filteredRecipeCards = getRecipeCardElementsFromData(filteredRecipes);
   updateRecipeDisplay(false, filteredRecipeCards);
   updateDropdownLists(filteredRecipes);
+  const endTime = performance.now();
+  const duration = endTime - startTime;
+  console.log('Durée d\'exécution :', duration, 'ms');
 }

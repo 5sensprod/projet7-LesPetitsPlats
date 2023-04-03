@@ -2,7 +2,7 @@ import { normalizeString } from '../utils/stringUtils.js';
 import { getRecipeData } from '../data-source/sharedData.js';
 import { updateDropdownLists, updateAvailableCriteria } from '../handlers/dropdownUpdates.js';
 import { generateNoRecipesFoundMessage } from '../utils/generator.js';
-import { toggleInputsDisabled, closeOpenedDropdown } from '../handlers/dropdownInteractions.js';
+import { toggleInputsDisabled, closeActiveDropdown } from '../handlers/dropdownInteractions.js';
 
 const getListType = (criteria) => {
   if (criteria.classList.contains('search-criteria__item--ingredient')) return 'ingredient';
@@ -59,7 +59,7 @@ export function updateRecipeDisplay(filterDropdowns = false, filteredRecipeCards
   if (noRecipesFound) {
     const openedDropdowns = document.querySelectorAll('.dropdown');
     openedDropdowns.forEach(dropdown => {
-      closeOpenedDropdown({ currentTarget: dropdown });
+      closeActiveDropdown({ currentTarget: dropdown });
     });
   }
 

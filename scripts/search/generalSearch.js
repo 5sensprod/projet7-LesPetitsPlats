@@ -20,57 +20,42 @@ export function filterRecipes() {
   const recipeData = getRecipeData();
   const filteredRecipes = [];
 
-  for (let i = 0; i < recipeData.length; i++) {
+  let i = 0;
+  while (i < recipeData.length) {
     const recipe = recipeData[i];
     const normalizedQuery = normalizeString(query);
-    let matchesSearchQuery = false;
-    if (query.length < 3 ||
-        normalizeString(recipe.name).includes(normalizedQuery) ||
-        recipe.ingredients.some(ingredient => normalizeString(ingredient.ingredient).includes(normalizedQuery)) ||
-        normalizeString(recipe.description).includes(normalizedQuery)) {
-      matchesSearchQuery = true;
-    }
+    let matchesSearchQuery = query.length < 3 || normalizeString(recipe.name).includes(normalizedQuery) || recipe.ingredients.some(ingredient => normalizeString(ingredient.ingredient).includes(normalizedQuery)) || normalizeString(recipe.description).includes(normalizedQuery);
 
     let matchesSearchCriteria = true;
-    for (let j = 0; j < searchCriteria.length; j++) {
+    let j = 0;
+    while (j < searchCriteria.length) {
       const criteria = searchCriteria[j];
-      const listType = criteria.classList.contains('search-criteria__item--ingredient') ? 'ingredient'
-        : criteria.classList.contains('search-criteria__item--appliance') ? 'appliance'
-          : 'ustensil';
+      const listType = criteria.classList.contains('search-criteria__item--ingredient') ? 'ingredient' : criteria.classList.contains('search-criteria__item--appliance') ? 'appliance' : 'ustensil';
       const normalizedText = normalizeString(criteria.textContent.trim());
 
-      let matchesCriteria = false;
-      if (listType === 'ingredient') {
-        for (let k = 0; k < recipe.ingredients.length; k++) {
-          const ingredient = recipe.ingredients[k];
-          if (ingredient.ingredient === normalizedText) {
-            matchesCriteria = true;
-            break;
-          }
-        }
-      } else if (listType === 'appliance') {
-        if (recipe.appliance === normalizedText) {
-          matchesCriteria = true;
-        }
-      } else if (listType === 'ustensil') {
-        for (let k = 0; k < recipe.ustensils.length; k++) {
-          const ustensil = recipe.ustensils[k];
-          if (ustensil === normalizedText) {
-            matchesCriteria = true;
-            break;
-          }
-        }
-      }
-
-      if (!matchesCriteria) {
+      if (listType === 'ingredient' && !recipe.ingredients.some(ingredient => ingredient.ingredient === normalizedText)) {
         matchesSearchCriteria = false;
         break;
       }
+
+      if (listType === 'appliance' && recipe.appliance !== normalizedText) {
+        matchesSearchCriteria = false;
+        break;
+      }
+
+      if (listType === 'ustensil' && !recipe.ustensils.some(ustensil => ustensil === normalizedText)) {
+        matchesSearchCriteria = false;
+        break;
+      }
+
+      j++;
     }
 
     if (matchesSearchQuery && matchesSearchCriteria) {
       filteredRecipes.push(recipe);
     }
+
+    i++;
   }
 
   const filteredRecipeCards = getRecipeCardElementsFromData(filteredRecipes);

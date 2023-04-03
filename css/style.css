@@ -263,6 +263,7 @@ body {
 }
 .dropdown__menu {
   display: none;
+  z-index: 3;
 }
 .dropdown__menu--active {
   position: absolute;
@@ -433,6 +434,10 @@ body {
 .only-no-dropdown-items-found-message {
   width: 500px;
   opacity: 0.65;
+}
+
+.body-modal-active {
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=style.css.map */

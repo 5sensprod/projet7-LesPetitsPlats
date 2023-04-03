@@ -5,6 +5,7 @@ import { getRandomItem, translateItemType } from "./randomItems.js";
 import { getRecipeDataById } from '../data-source/sharedData.js';
 import { addUniqueListItem } from "./dropdownListUtils.js";
 import { updateRecipeDisplay } from "../search/criteriaSearch.js";
+import { closeOpenedDropdown } from "../handlers/dropdownInteractions.js";
 
 
 
@@ -73,12 +74,39 @@ export function generateOnlyNoDropdownItemsFoundMessage(itemType, dropdownSelect
     }
 }
 
+export function generateRecipeCards(data) {
+    const recipesContainer = document.querySelector(".recipes-container");
+    data.forEach((recipe) => {
+        // Création des cartes de recettes
+        const recipeCard = createRecipeCard(recipe);
+        
+        // Ajout de l'ID de la recette à l'élément "recipe-card"
+        recipeCard.setAttribute("data-recipe-id", recipe.id);
+        
+        // Ajout d'un écouteur d'événements pour afficher la modale lorsqu'on clique sur la carte de recette
+        recipeCard.addEventListener("click", () => {
+            createAndShowModal(recipe.id);
+        });
+        
+        recipesContainer.appendChild(recipeCard);
+    });
+}
+
 function createAndShowModal(recipeId) {
+
+    // Fermer toutes les dropdowns ouvertes
+    const openDropdowns = document.querySelectorAll('.dropdown');
+    openDropdowns.forEach(dropdown => {
+        const event = { currentTarget: dropdown }; // Créer un faux événement pour appeler closeOpenedDropdown
+        closeOpenedDropdown(event);
+    });
+
     // Trouver la recette correspondante en utilisant l'ID
     const recipe = getRecipeDataById(parseInt(recipeId));
 
     const modal = document.createElement("div");
     modal.classList.add("modal");
+    document.body.classList.add("body-modal-active");
     // Si la recette n'est pas trouvée, ne faites rien
     if (!recipe) return;
 
@@ -97,24 +125,7 @@ function createAndShowModal(recipeId) {
     overlay.addEventListener("click", () => {
         modal.remove();
         overlay.remove();
-    });
-}
+        document.body.classList.remove("body-modal-active");
 
-
-export function generateRecipeCards(data) {
-    const recipesContainer = document.querySelector(".recipes-container");
-    data.forEach((recipe) => {
-        // Création des cartes de recettes
-        const recipeCard = createRecipeCard(recipe);
-
-        // Ajout de l'ID de la recette à l'élément "recipe-card"
-        recipeCard.setAttribute("data-recipe-id", recipe.id);
-
-        // Ajout d'un écouteur d'événements pour afficher la modale lorsqu'on clique sur la carte de recette
-        recipeCard.addEventListener("click", () => {
-            createAndShowModal(recipe.id);
-        });
-
-        recipesContainer.appendChild(recipeCard);
     });
 }

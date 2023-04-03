@@ -9,7 +9,7 @@ const dropdownToggles = [
 export function toggleInputsDisabled(disabled) {
   const dropdowns = document.querySelectorAll('.dropdown');
   const dropdownInputs = document.querySelectorAll('.dropdown__toggle');
-  
+
   dropdownInputs.forEach(input => {
     if (disabled) {
       input.setAttribute('disabled', '');
@@ -38,7 +38,7 @@ export function closeOpenedDropdown(event) {
   if (dropdownMenu.classList.contains('dropdown__menu--active')) {
     dropdownMenu.classList.remove('dropdown__menu--active');
     dropdownToggle.classList.remove('dropdown__toggle--active');
-    
+
     // Revenir sur type="button"
     const toggleIndex = Array.from(document.querySelectorAll('.dropdown__toggle')).indexOf(dropdownToggle);
     const label = dropdownToggles[toggleIndex].label;

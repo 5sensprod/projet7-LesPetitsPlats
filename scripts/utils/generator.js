@@ -79,16 +79,30 @@ export function generateRecipeCards(data) {
     data.forEach((recipe) => {
         // Création des cartes de recettes
         const recipeCard = createRecipeCard(recipe);
-        
+
         // Ajout de l'ID de la recette à l'élément "recipe-card"
         recipeCard.setAttribute("data-recipe-id", recipe.id);
-        
+
         // Ajout d'un écouteur d'événements pour afficher la modale lorsqu'on clique sur la carte de recette
         recipeCard.addEventListener("click", () => {
             createAndShowModal(recipe.id);
         });
-        
+
         recipesContainer.appendChild(recipeCard);
+    });
+}
+
+
+// Modale
+
+function closeModal(modal, overlay) {
+    modal.classList.add("modal-closing");
+
+    // Attendre la fin de l'animation avant de supprimer les éléments
+    modal.addEventListener("animationend", () => {
+        modal.remove();
+        overlay.remove();
+        document.body.classList.remove("body-modal-active");
     });
 }
 
@@ -123,9 +137,13 @@ function createAndShowModal(recipeId) {
 
     // Fermer la modale lorsqu'on clique sur l'arrière-plan assombri
     overlay.addEventListener("click", () => {
-        modal.remove();
-        overlay.remove();
-        document.body.classList.remove("body-modal-active");
+        closeModal(modal, overlay);
 
+        // Fermer toutes les dropdowns ouvertes
+        const openDropdowns = document.querySelectorAll('.dropdown');
+        openDropdowns.forEach(dropdown => {
+            const event = { currentTarget: dropdown }; // Créer un faux événement pour appeler closeOpenedDropdown
+            closeOpenedDropdown(event);
+        });
     });
 }

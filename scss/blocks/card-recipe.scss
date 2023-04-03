@@ -4,6 +4,7 @@
   background-color: $color-bg-light;
   border-radius: rem(5);
   transition: all 0.1s ease;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);

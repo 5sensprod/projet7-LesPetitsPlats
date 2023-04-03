@@ -20,50 +20,59 @@ export function filterRecipes() {
   const recipeData = getRecipeData();
   const filteredRecipes = [];
 
-  // Utiliser une boucle for...of pour parcourir toutes les recettes
-  for (const recipe of recipeData) {
+  for (let i = 0; i < recipeData.length; i++) {
+    const recipe = recipeData[i];
     const normalizedQuery = normalizeString(query);
-
-    // Vérifier si la requête de recherche correspond aux recettes en utilisant des boucles natives
-    const matchesSearchQuery = query.length < 3 ||
-      normalizeString(recipe.name).includes(normalizedQuery) ||
-      recipe.ingredients.some(ingredient => normalizeString(ingredient.ingredient).includes(normalizedQuery)) ||
-      normalizeString(recipe.description).includes(normalizedQuery);
+    let matchesSearchQuery = false;
+    if (query.length < 3 ||
+        normalizeString(recipe.name).includes(normalizedQuery) ||
+        recipe.ingredients.some(ingredient => normalizeString(ingredient.ingredient).includes(normalizedQuery)) ||
+        normalizeString(recipe.description).includes(normalizedQuery)) {
+      matchesSearchQuery = true;
+    }
 
     let matchesSearchCriteria = true;
-
-    // Utiliser une boucle for...of pour parcourir tous les critères de recherche
-    for (const criteria of searchCriteria) {
+    for (let j = 0; j < searchCriteria.length; j++) {
+      const criteria = searchCriteria[j];
       const listType = criteria.classList.contains('search-criteria__item--ingredient') ? 'ingredient'
         : criteria.classList.contains('search-criteria__item--appliance') ? 'appliance'
           : 'ustensil';
-
       const normalizedText = normalizeString(criteria.textContent.trim());
 
-      // Vérifier si les critères de recherche correspondent aux recettes en utilisant des boucles natives
-      if (listType === 'ingredient' && !recipe.ingredients.some(ingredient => ingredient.ingredient === normalizedText)) {
-        matchesSearchCriteria = false;
-        break;
+      let matchesCriteria = false;
+      if (listType === 'ingredient') {
+        for (let k = 0; k < recipe.ingredients.length; k++) {
+          const ingredient = recipe.ingredients[k];
+          if (ingredient.ingredient === normalizedText) {
+            matchesCriteria = true;
+            break;
+          }
+        }
+      } else if (listType === 'appliance') {
+        if (recipe.appliance === normalizedText) {
+          matchesCriteria = true;
+        }
+      } else if (listType === 'ustensil') {
+        for (let k = 0; k < recipe.ustensils.length; k++) {
+          const ustensil = recipe.ustensils[k];
+          if (ustensil === normalizedText) {
+            matchesCriteria = true;
+            break;
+          }
+        }
       }
 
-      if (listType === 'appliance' && recipe.appliance !== normalizedText) {
-        matchesSearchCriteria = false;
-        break;
-      }
-
-      if (listType === 'ustensil' && !recipe.ustensils.some(ustensil => ustensil === normalizedText)) {
+      if (!matchesCriteria) {
         matchesSearchCriteria = false;
         break;
       }
     }
 
-    // Ajouter la recette aux recettes filtrées si elle correspond à la requête de recherche et aux critères de recherche
     if (matchesSearchQuery && matchesSearchCriteria) {
       filteredRecipes.push(recipe);
     }
   }
 
-  // Mettre à jour l'affichage des recettes et les listes déroulantes en fonction des recettes filtrées
   const filteredRecipeCards = getRecipeCardElementsFromData(filteredRecipes);
   updateRecipeDisplay(false, filteredRecipeCards);
   updateDropdownLists(filteredRecipes);

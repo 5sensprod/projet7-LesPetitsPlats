@@ -36,6 +36,11 @@
             width: rem(667);
             border-radius: rem(5) rem(5) 0 0;
         }
+
+        &--disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     }
 
     &__label {
@@ -54,6 +59,7 @@
 
     &__menu {
         display: none;
+        z-index: 3;
 
         &--active {
             position: absolute;

@@ -1,3 +1,6 @@
+// import de bootstrap
+// @import '../node_modules/bootstrap/scss/bootstrap';
+
 //import reset
 @import 'partials/reset';
 
@@ -11,6 +14,7 @@
 @import 'blocks/card-recipe.scss';
 @import 'blocks/dropdowns.scss';
 @import 'blocks/criteria.scss';
+@import 'blocks/modal-recipe.scss';
 
 // Utilisation du style pour le header
 .header {
@@ -24,6 +28,7 @@
     margin: 0 auto;
     max-width: rem(1240);
     padding: 0 2%;
+    margin-bottom: rem(50) ;
 }
 
 //style pour le container des cards de recettes
@@ -35,3 +40,31 @@
     row-gap: rem(20);
     max-width: rem(1240);
 }
+
+.no-found-message {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+    color: black;
+    opacity: 0.45;
+}
+
+// .no-dropdown-items-found-message {
+//     display: block !important;
+//     width: 500px;
+//     opacity: 0.65;
+    
+//   }
+
+  .only-no-dropdown-items-found-message {
+    width: 500px;
+    opacity: 0.65;
+    
+  }
+
+  .body-modal-active {
+    overflow: hidden;
+}
+

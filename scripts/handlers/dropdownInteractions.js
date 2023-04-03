@@ -1,11 +1,63 @@
 import { filterDropdownItems } from '../utils/dropdownListUtils.js';
 
+const dropdownToggles = [
+  { selector: '.dropdown__toggle--ingredients', label: 'Ingrédients' },
+  { selector: '.dropdown__toggle--appliances', label: 'Appareils' },
+  { selector: '.dropdown__toggle--ustensils', label: 'Ustensiles' },
+];
+
+export function toggleInputsDisabled(disabled) {
+  const dropdowns = document.querySelectorAll('.dropdown');
+  const dropdownInputs = document.querySelectorAll('.dropdown__toggle');
+
+  dropdownInputs.forEach(input => {
+    if (disabled) {
+      input.setAttribute('disabled', '');
+      input.classList.add('dropdown__toggle--disabled'); // Ajout de la classe
+    } else {
+      input.removeAttribute('disabled');
+      input.classList.remove('dropdown__toggle--disabled'); // Retrait de la classe
+    }
+  });
+
+  if (disabled) {
+    dropdowns.forEach(dropdown => {
+      dropdown.addEventListener('click', closeOpenedDropdown);
+    });
+  } else {
+    dropdowns.forEach(dropdown => {
+      dropdown.removeEventListener('click', closeOpenedDropdown);
+    });
+  }
+}
+
+export function closeOpenedDropdown(event) {
+  const dropdownMenu = event.currentTarget.querySelector('.dropdown__menu');
+  const dropdownToggle = event.currentTarget.querySelector('.dropdown__toggle');
+
+  if (dropdownMenu.classList.contains('dropdown__menu--active')) {
+    dropdownMenu.classList.remove('dropdown__menu--active');
+    dropdownToggle.classList.remove('dropdown__toggle--active');
+
+    // Revenir sur type="button"
+    const toggleIndex = Array.from(document.querySelectorAll('.dropdown__toggle')).indexOf(dropdownToggle);
+    const label = dropdownToggles[toggleIndex].label;
+    toggleInput(dropdownToggle, label);
+  }
+}
+
 // Fonction qui change le type de l'input entre 'text' et 'button' et met à jour son label et placeholder
 function toggleInput(input, label) {
   const isButton = input.type === 'button';
-  input.type = isButton ? 'text' : 'button';
-  input.value = isButton ? '' : label;
-  input.placeholder = isButton ? `Rechercher par ${label}` : '';
+  if (isButton) {
+    input.type = 'text';
+    input.value = input.getAttribute('data-stored-value') || '';
+    input.placeholder = `Rechercher par ${label}`;
+  } else {
+    input.setAttribute('data-stored-value', input.value);
+    input.type = 'button';
+    input.value = label;
+  }
 }
 
 export function addDropdownEvents() {

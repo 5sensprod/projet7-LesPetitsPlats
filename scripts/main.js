@@ -1,7 +1,7 @@
 import { fetchData } from './data-source/dataFetch.js';
 import { getRecipeData } from './data-source/sharedData.js';
 
-import { generateRecipeCards, generateListDropdowns } from './utils/generator.js';
+import { generateRecipeCards, generateListDropdowns, generateNoRecipesFoundMessage } from './utils/generator.js';
 import { addDropdownEvents } from "./handlers/dropdownInteractions.js";
 import { addDropdownItemClickListeners } from './handlers/dropdownItemListeners.js';
 
@@ -19,6 +19,8 @@ async function initialize() {
 
     updateRecipeDisplay();
     filterRecipes();
+
+    generateNoRecipesFoundMessage();
 }
 
 function initializeEventListeners() {

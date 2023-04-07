@@ -14,31 +14,49 @@ function getRecipeCardElementsFromData(filteredRecipesData) {
 
 // Filtre les recettes en utilisant une approche fonctionnelle (sans boucles)
 export function filterRecipes() {
+  let operationCount = 0;
   const startTime = performance.now();
   const searchInput = document.getElementById('search-input');
   const query = normalizeString(searchInput.value.trim());
   const searchCriteria = document.querySelectorAll('.search-criteria__item');
+  operationCount += 3;
 
-  // Utilise la méthode .filter() pour filtrer les recettes en fonction des critères de recherche
   const filteredRecipes = getRecipeData().filter(recipe => {
+    operationCount++;
     const normalizedQuery = normalizeString(query);
     const matchesSearchQuery = query.length < 3 || normalizeString(recipe.name).includes(normalizedQuery) || recipe.ingredients.some(ingredient => normalizeString(ingredient.ingredient).includes(normalizedQuery)) || normalizeString(recipe.description).includes(normalizedQuery);
-    //console.log sur name
-    // console.log(recipe.name);
+    operationCount += 4;
+
     const matchesSearchCriteria = Array.from(searchCriteria).every(criteria => {
+      operationCount++;
       const listType = criteria.classList.contains('search-criteria__item--ingredient') ? 'ingredient'
         : criteria.classList.contains('search-criteria__item--appliance') ? 'appliance'
           : 'ustensil';
       const normalizedText = normalizeString(criteria.textContent.trim());
-      return listType === 'ingredient' ? recipe.ingredients.some(ingredient => ingredient.ingredient === normalizedText) : listType === 'appliance' ? recipe.appliance === normalizedText : recipe.ustensils.some(ustensil => ustensil === normalizedText);
+      operationCount += 2;
+
+      const match = listType === 'ingredient' ? recipe.ingredients.some(ingredient => {
+        operationCount++;
+        return ingredient.ingredient === normalizedText;
+      }) : listType === 'appliance' ? recipe.appliance === normalizedText : recipe.ustensils.some(ustensil => {
+        operationCount++;
+        return ustensil === normalizedText;
+      });
+      operationCount++;
+      return match;
     });
+    operationCount++;
     return matchesSearchQuery && matchesSearchCriteria;
   });
+  operationCount++;
 
   const filteredRecipeCards = getRecipeCardElementsFromData(filteredRecipes);
   updateRecipeDisplay(false, filteredRecipeCards);
   updateDropdownLists(filteredRecipes);
+  operationCount += 3;
+
   const endTime = performance.now();
   const duration = endTime - startTime;
   console.log('Durée d\'exécution :', duration, 'ms');
+  console.log('Nombre d\'opérations :', operationCount);
 }

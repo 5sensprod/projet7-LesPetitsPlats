@@ -12,10 +12,16 @@ function getRecipeCardElementsFromData(filteredRecipesData) {
   });
 }
 
+
+
 // Filtre les recettes en utilisant une approche fonctionnelle (sans boucles)
 export function filterRecipes() {
+  // Initialise le compteur d'opérations pour mesurer les performances
   let operationCount = 0;
+  // Enregistre le temps de début pour calculer la durée d'exécution
   const startTime = performance.now();
+
+
   const searchInput = document.getElementById('search-input');
   const query = normalizeString(searchInput.value.trim());
   const searchCriteria = document.querySelectorAll('.search-criteria__item');
@@ -55,6 +61,7 @@ export function filterRecipes() {
   updateDropdownLists(filteredRecipes);
   operationCount += 3;
 
+  // Enregistre le temps de fin, calcule la durée d'exécution et affiche les résultats de performance et le nombre d'opérations
   const endTime = performance.now();
   const duration = endTime - startTime;
   console.log('Durée d\'exécution :', duration, 'ms');

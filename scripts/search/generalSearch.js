@@ -12,8 +12,6 @@ function getRecipeCardElementsFromData(filteredRecipesData) {
   });
 }
 
-
-
 // Filtre les recettes en utilisant une approche fonctionnelle (sans boucles)
 export function filterRecipes() {
   // Initialise le compteur d'opérations pour mesurer les performances

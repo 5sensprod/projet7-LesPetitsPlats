@@ -19,20 +19,24 @@ export function filterRecipes() {
   // Enregistre le temps de début pour calculer la durée d'exécution
   const startTime = performance.now();
 
-
+  // Etape 1 : Récupérer les données de recherche et recettes
   const searchInput = document.getElementById('search-input');
   const query = normalizeString(searchInput.value.trim());
   const searchCriteria = document.querySelectorAll('.search-criteria__item');
   operationCount += 3;
 
+  // Etape 2 : Filtrer les recettes
+  //Utiliser la méthode filter pour le filtrage des recettes
   const filteredRecipes = getRecipeData().filter(recipe => {
     operationCount++;
     const normalizedQuery = normalizeString(query);
+    // Utiliser la méthode includes pour vérifier si la chaîne de caractères est présente dans une autre chaîne de caractères
     const matchesSearchQuery = query.length < 3 || normalizeString(recipe.name).includes(normalizedQuery) || recipe.ingredients.some(ingredient => normalizeString(ingredient.ingredient).includes(normalizedQuery)) || normalizeString(recipe.description).includes(normalizedQuery);
     operationCount += 4;
 
     const matchesSearchCriteria = Array.from(searchCriteria).every(criteria => {
       operationCount++;
+      // Vérifier la correspondance entre la recette et le critère de recherche
       const listType = criteria.classList.contains('search-criteria__item--ingredient') ? 'ingredient'
         : criteria.classList.contains('search-criteria__item--appliance') ? 'appliance'
           : 'ustensil';
@@ -50,10 +54,12 @@ export function filterRecipes() {
       return match;
     });
     operationCount++;
+    // Retourne true si la recette correspond à la recherche, false sinon
     return matchesSearchQuery && matchesSearchCriteria;
   });
   operationCount++;
-
+  
+  // Etape 3 : Mettre à jour l'affichage
   const filteredRecipeCards = getRecipeCardElementsFromData(filteredRecipes);
   updateRecipeDisplay(false, filteredRecipeCards);
   updateDropdownLists(filteredRecipes);

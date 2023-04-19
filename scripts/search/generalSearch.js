@@ -19,6 +19,7 @@ export function filterRecipes() {
   // Enregistre le temps de début pour calculer la durée d'exécution
   const startTime = performance.now();
 
+  //Etape 1 : Récupération et normalisation des données d'entrée
   const searchInput = document.getElementById('search-input');
   const query = normalizeString(searchInput.value.trim());
   const searchCriteria = document.querySelectorAll('.search-criteria__item');
@@ -26,6 +27,9 @@ export function filterRecipes() {
   const filteredRecipes = [];
   operationCount += 4;
 
+
+  // Etape 2 : Filtrage des les recettes
+  // Boucle sur les recettes
   let i = 0;
   while (i < recipeData.length) {
     operationCount++;
@@ -35,14 +39,18 @@ export function filterRecipes() {
     operationCount += 4;
 
     let matchesSearchCriteria = true;
+
+    // Boucle sur les critères de recherche
     let j = 0;
     while (j < searchCriteria.length) {
       operationCount++;
       const criteria = searchCriteria[j];
+      // Vérification du type de liste
       const listType = criteria.classList.contains('search-criteria__item--ingredient') ? 'ingredient' : criteria.classList.contains('search-criteria__item--appliance') ? 'appliance' : 'ustensil';
       const normalizedText = normalizeString(criteria.textContent.trim());
       operationCount += 2;
 
+      // Vérifie si la recette correspond aux critères de recherche
       if (listType === 'ingredient' && !recipe.ingredients.some(ingredient => ingredient.ingredient === normalizedText)) {
         matchesSearchCriteria = false;
         break;
@@ -61,6 +69,7 @@ export function filterRecipes() {
       j++;
     }
 
+    // Ajoute la recette aux résultats si elle correspond à la recherche
     if (matchesSearchQuery && matchesSearchCriteria) {
       filteredRecipes.push(recipe);
       operationCount++;
@@ -69,6 +78,7 @@ export function filterRecipes() {
     i++;
   }
 
+  // Etape 3 : Mise à jour de l'affichage
   const filteredRecipeCards = getRecipeCardElementsFromData(filteredRecipes);
   updateRecipeDisplay(false, filteredRecipeCards);
   updateDropdownLists(filteredRecipes);
